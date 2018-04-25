@@ -5,7 +5,7 @@ a small API that sends anime/hentai images in JSON
 [![Discord](https://discordapp.com/api/guilds/138303776170835969/widget.png)](https://discord.gg/rMVju6a)
 
 | [![twitter](https://cdn.discordapp.com/attachments/155726317222887425/252192520094613504/twiter_banner.JPG)](https://twitter.com/nintendoDSgek) | [![discord](https://cdn.discordapp.com/attachments/266240393639755778/281920766490968064/discord.png)](https://discord.gg/rMVju6a)
-| --- | --- | --- |
+| --- | --- |
 | **Follow me on Twitter.** | **Join my Discord server for help.** |
 
 ## other important stuff
