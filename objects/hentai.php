@@ -28,31 +28,5 @@ class Hentai{
     
         return $stmt;
     }
-
-    function create(){
-    
-        // query to insert record
-        $query = "INSERT INTO
-                    " . $this->table_name . "
-                SET
-                    url=:url";
-    
-        // prepare query
-        $stmt = $this->conn->prepare($query);
-    
-        // sanitize
-        $this->url=htmlspecialchars(strip_tags($this->url));
-    
-        // bind values
-        $stmt->bindParam(":url", $this->url);
-    
-        // execute query
-        if($stmt->execute()){
-            return true;
-        }
-    
-        return false;
-        
-    }
 }
 ?>
