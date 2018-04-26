@@ -17,7 +17,7 @@ data |  filled in |
 | **username** | **❌**
 | **password** | **❌**
 
-### common soon
+### coming soon
 
 - more endpoints
 - improved randomness
