@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class HentaiController extends Controller
 {
     /**
-     * @Route("/api/hentai",name="hentai")
+     * @Route("/hentai",name="hentai")
      * @Method("GET")
      * @param $id
      */

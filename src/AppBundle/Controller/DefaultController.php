@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/api", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {

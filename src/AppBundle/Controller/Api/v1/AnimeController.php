@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AnimeController extends Controller
 {
     /**
-     * @Route("/api/anime", name="anime")
+     * @Route("/anime", name="anime")
      * @Method("GET")
      * @param $id
      */
