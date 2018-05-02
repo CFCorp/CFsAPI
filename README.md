@@ -31,12 +31,19 @@ data |  filled in |
  Will it work on my PC
 - i don't recommend using my stuff but only for testing purposes (maybe)
 
-#### installation
+# Requirements:
+- webserver (Apache, PHP, MySQL)
+- redis
 
-stuff you will need:
+### How to setup for dummy's
+with phpstorm (with php in path (or add it in your path)):
+    setup composer (be sure it downloads composer.phar)
+    and run this command in a terminal in the project directory `php composer.phar install`
 
-- [composer](https://getcomposer.org/)
+download & install composer and after that run this in the project directory
+`composer install --optimize-autoloader```
 
-- [redis](https://redis.io/download)
 
-- `php and apache2`
+##### setup doctrine (database)
+check the parametes in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
+if everything works except for the sync error run this to sync it `php bin\console doctrine:schema:update --force`
