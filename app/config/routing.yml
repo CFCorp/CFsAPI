@@ -1,3 +1,9 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+hentai:
+    resource: '@AppBundle/Controller/Api/v1/HentaiController.php'
+    type: annotation
+anime:
+    resource: '@AppBundle/Controller/Api/v1/AnimeController.php'
+    type: annotation
