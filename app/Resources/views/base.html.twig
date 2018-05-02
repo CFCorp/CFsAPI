@@ -3,7 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}API{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <meta name="og:title" content="CFs API">
+            <meta name="og:description" content="a small API that sends anime/hentai images in JSON">
+            <meta name="og:image" content="{{ asset('https://computerfreaker.cf/profile/profile.png') }}">
+            <meta name="og:url" content="https://api.computerfreaker.cf">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('https://computerfreaker.cf/profile/profile.png') }}" />
     </head>
     <body>

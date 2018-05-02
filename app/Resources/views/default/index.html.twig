@@ -1,15 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Here you can find all the current endpoints</h1>
-    <p>GET | {{ path("anime") }}</p>
-    <p>GET | {{ path("hentai") }}</p>
+    <section class="fullscreen">
+        <div class="center-object">
+            <section class="me">
+                <h1 class="title">CFs API</h1>
+                <span class="undertitle">get a random anime/hentai pic</span>
+            </section>
+            <div class="table-container table-center center">
+                <h1>Here you can find all the current endpoints</h1>
+                <section class="me">
+                    <section class="comment-section ">
+                        <div class="comment-container center">
+                            <div class="avatar">
+                                <img src="{{ asset('https://cdn.computerfreaker.cf//bdb6c11108ce40cda471830267895f41.png') }}">
+                            </div>
+                            <div class="text">
+                                <h1 class="author">GET</h1>
+                                <span class="comment">{{ path('anime') }}</span>
+                            </div>
+                            <div class="avatar">
+                                <img src="{{ asset('http://cdn.hentai-wallpapers.com/albums/2011-04-25/uploadinsim-2/Yoruichi/normal_Yoruichi-11.jpg') }}">
+                            </div>
+                            <div class="text">
+                                <h1 class="author">GET</h1>
+                                <span class="comment">{{ path('hentai') }}</span>
+                            </div>
+
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <div class="buttons">
+                <a href="{{ path("anime") }}" class="btn animation pomegranate" target="_blank">Anime</a>
+                <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
+            </div>
+
+        </div>
+    </section>
+
 {% endblock %}
 
 {% block stylesheets %}
+<link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
 <style>
 
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    body { background: #000000; font: 18px/1.5 sans-serif;}
     h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
     h1 { font-size: 20px; }
     h2 { font-size: 21px; margin-bottom: 1em; }
