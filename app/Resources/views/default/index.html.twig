@@ -42,15 +42,19 @@
 {% endblock %}
 
 {% block stylesheets %}
-<link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
-<style>
+    <meta name="og:title" content="CFs API">
+    <meta name="og:description" content="a small API that sends anime/hentai images in JSON">
+    <meta name="og:image" content="{{ asset('https://computerfreaker.cf/profile/profile.png') }}">
+    <meta name="og:url" content="https://api.computerfreaker.cf">
+    <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
+    <style>
 
-    body { background: #000000; font: 18px/1.5 sans-serif;}
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
-    h1 { font-size: 20px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; font-size: 12px;}
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-</style>
+        body { background: #000000; font: 18px/1.5 sans-serif;}
+        h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
+        h1 { font-size: 20px; }
+        h2 { font-size: 21px; margin-bottom: 1em; }
+        p { margin: 0 0 1em 0; font-size: 12px;}
+        a { color: #0000F0; }
+        a:hover { text-decoration: none; }
+    </style>
 {% endblock %}
