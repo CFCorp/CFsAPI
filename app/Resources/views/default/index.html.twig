@@ -2,8 +2,8 @@
 
 {% block body %}
     <h1>Here you can find all the current endpoints</h1>
-    <p>GET | /anime</p>
-    <p>GET | /hentai</p>
+    <p>GET | {{ path("anime") }}</p>
+    <p>GET | {{ path("hentai") }}</p>
 {% endblock %}
 
 {% block stylesheets %}
