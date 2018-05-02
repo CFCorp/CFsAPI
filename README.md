@@ -32,7 +32,7 @@ data |  filled in |
 - i don't recommend using my stuff but only for testing purposes (maybe)
 
 # Requirements:
-- webserver (Apache/Nginx, PHP, MySQL)
+- web server (Apache/Nginx, PHP, MySQL)
 - redis
 
 ### How to setup for dummy's
@@ -45,5 +45,5 @@ download & install composer and after that run this in the project directory
 
 
 ##### setup doctrine (database)
-check the parametes in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
+check the parameters in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
 if everything works except for the sync error run this to sync it `php bin\console doctrine:schema:update --force`
