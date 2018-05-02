@@ -21,3 +21,6 @@
 /vendor/
 /web/bundles/
 .idea/vcs.xml
+var/cache/.gitkeep
+var/logs/.gitkeep
+var/sessions/.gitkeep
