@@ -32,7 +32,7 @@ data |  filled in |
 - i don't recommend using my stuff but only for testing purposes (maybe)
 
 # Requirements:
-- webserver (Apache, PHP, MySQL)
+- webserver (Apache/Nginx, PHP, MySQL)
 - redis
 
 ### How to setup for dummy's
@@ -41,7 +41,7 @@ with phpstorm (with php in path (or add it in your path)):
     and run this command in a terminal in the project directory `php composer.phar install`
 
 download & install composer and after that run this in the project directory
-`composer install --optimize-autoloader```
+`composer install --optimize-autoloader`
 
 
 ##### setup doctrine (database)
