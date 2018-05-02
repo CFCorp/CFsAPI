@@ -26,11 +26,10 @@ data |  filled in |
 #### FAQ
 
  Can i help
-- yes ofcourse just make a PR
+- yes of course just make a PR
 
  Will it work on my PC
 - i don't recommend using my stuff but only for testing purposes (maybe)
-
 
 # Requirements:
 - webserver (Apache, PHP, MySQL)
@@ -45,7 +44,6 @@ download & install composer and after that run this in the project directory
 `composer install --optimize-autoloader```
 
 
-#####setup doctrine (database)
+##### setup doctrine (database)
 check the parametes in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
 if everything works except for the sync error run this to sync it `php bin\console doctrine:schema:update --force`
-
