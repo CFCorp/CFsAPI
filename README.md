@@ -26,7 +26,17 @@ data |  filled in |
 #### FAQ
 
  Can i help
-- yes ofcourse just make a PR
+- yes of course just make a PR
 
  Will it work on my PC
 - i don't recommend using my stuff but only for testing purposes (maybe)
+
+#### installation
+
+stuff you will need:
+
+- [composer](https://getcomposer.org/)
+
+- [redis](https://redis.io/download)
+
+- `php and apache2`
