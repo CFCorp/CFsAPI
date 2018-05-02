@@ -76,7 +76,7 @@ maba_gentle_force:
               period: 1m
               bucketed_period: 1h
     listeners:
-        - path: ^/api/          # automatically limit matching requests
+        - path: ^/       # automatically limit matching requests
           limits_key: api_request
           identifiers: [ip]     # limit by IP address
 
