@@ -33,3 +33,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    app.login_handler:
+      class: AppBundle\Handler\LoginSuccessHandler
+      arguments: ["@router", "@security.authorization_checker"]

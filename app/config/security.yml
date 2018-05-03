@@ -3,9 +3,16 @@
 security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+      AppBundle\Entity\User:
+        algorithm: bcrypt
+        cost:      15
+
     providers:
-        in_memory:
-            memory: ~
+      our_db_provider:
+        entity:
+          class: AppBundle:User
+          property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,10 +22,15 @@ security:
 
         main:
             anonymous: ~
-            # activate different ways to authenticate
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+            provider: our_db_provider
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            form_login:
+              login_path: login
+              check_path: login
+              success_handler: app.login_handler
+            logout:
+              path: /logout
+              target: /
+    access_control:
+          - {path: ^/uploader, roles: ROLE_ADMIN}

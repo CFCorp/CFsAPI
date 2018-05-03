@@ -7,3 +7,11 @@ hentai:
 anime:
     resource: '@AppBundle/Controller/Api/v1/AnimeController.php'
     type: annotation
+logout:
+  path: /logout
+login:
+    resource: '@AppBundle/Controller/LoginController.php'
+    type: annotation
+uploader:
+    resource: '@AppBundle/Controller/UploadController.php'
+    type: annotation

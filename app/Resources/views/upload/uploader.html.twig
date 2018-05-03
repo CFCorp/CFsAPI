@@ -6,10 +6,11 @@
         <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }}</h1>
         <div id="navside" class="sidenav">
             <span class="closebtn">&times;</span>
-            <a href="{{ path('homepage') }}" class="current">Home</a>
+            <a href="{{ path('homepage') }}">Home</a>
             <a href="{{ path('login') }}">Login</a>
             <a href="{{ path('anime') }}">Anime</a>
             <a href="{{ path('hentai') }}">Hentai</a>
+            <a href="{{ path('Uploader') }}" class="current">Uploader</a>
             <a href="{{ path('animeUploader') }}">Anime Uploader</a>
             <a href="{{ path('hentaiUploader') }}">Hentai Uploader</a>
             <a href="{{ path('logout') }}">Logout</a>
@@ -36,14 +37,14 @@
                             </div>
                             <div class="text">
                                 <h1 class="author">GET</h1>
-                                <span class="comment">{{ path('anime') }}</span>
+                                <span class="comment">{{ path('animeUploader') }}</span>
                             </div>
                             <div class="avatar">
                                 <img src="{{ asset('https://pics.computerfreaker.cf/albums/gallery/Miyazaki_Yuki_%28110971%29/57653472_p0.jpg') }}">
                             </div>
                             <div class="text">
                                 <h1 class="author">GET</h1>
-                                <span class="comment">{{ path('hentai') }}</span>
+                                <span class="comment">{{ path('hentaiUploader') }}</span>
                             </div>
 
                         </div>
@@ -51,8 +52,8 @@
                 </section>
             </div>
             <div class="buttons">
-                <a href="{{ path("anime") }}" class="btn animation pomegranate" target="_blank">Anime</a>
-                <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
+                <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="_blank">Anime</a>
+                <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
             </div>
 
         </div>
@@ -61,10 +62,6 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <meta name="og:title" content="CFs API">
-    <meta name="og:description" content="a small API that sends anime/hentai images in JSON">
-    <meta name="og:image" content="{{ asset('https://computerfreaker.cf/profile/profile.png') }}">
-    <meta name="og:url" content="https://api.computerfreaker.cf">
     <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
     <style>
 
