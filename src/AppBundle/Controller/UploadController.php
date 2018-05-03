@@ -49,6 +49,7 @@ class UploadController extends Controller
                 $statement->execute();
             }else{
                 $msg = "Failed to upload image";
+                return $msg;
             }
         }
         return $this->render('upload/anime.html.twig');
