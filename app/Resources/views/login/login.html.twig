@@ -22,66 +22,52 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, "login") }}</div>
     {% endif %}
+<form action="{{ path('login') }}" method="post">
+    <div class="login-page_container">
 
-    <form action="{{ path('login') }}" method="post">
-        <table>
-            <caption>login</caption>
-            <tr>
-                <td>username:</td>
-                <td>
-                    <input type="text" autocomplete="off" name="_username" placeholder="put your username here:">
-                </td>
-            </tr>
+        <div class="login-section page-side section-ope">
+            <div class="section-page_intro">
+                <img src="{{ asset('Image/signin-icon-black.png') }}" alt="signin-icon">
+                <p class="section-page-intro_title">Sign In</p>
+            </div>
 
-            <tr>
-                <td>password:</td>
-                <td>
-                    <input type="password" autocomplete="off" name="_password" placeholder="put your password here">
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="login">
-                </td>
-            </tr>
-        </table>
-    </form>
+            <div class="login-form-area">
+                <p class="form-title">Sign In</p>
+                <div class="section-form">
+                    <form class="login-form">
+                        <label class="login-page_label">
+                            <input class="login-page_input" type="text" autocomplete="off" name="_username">
+                            <span class="login-page_placeholder">Username</span>
+                        </label>
+                        <label class="login-page_label">
+                            <input class="login-page_input" type="password" autocomplete="off" name="_password">
+                            <span class="login-page_placeholder">Password</span>
+                        </label>
+                        <div class="login-section_submit">
+                            <div class="login-page-submit-btn">
+                                <input type="submit" name="submit-login" value="login">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    <script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
+    <script src="{{ asset('js/login-page_script.js') }}"></script>
 {% endblock %}
 
 {% block stylesheets %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login page</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login-page_demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login-page_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login-page_responsive.css') }}">
     <title>Anime Upload</title>
     <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
-    <style type="text/css">
-        #content{
-            width: 50%;
-            margin: 20px auto;
-            border: 1px solid #cbcbcb;
-        }
-        form{
-            width: 50%;
-            margin: 20px auto;
-        }
-        form div{
-            margin-top: 5px;
-        }
-        #img_div{
-            width: 80%;
-            padding: 5px;
-            margin: 15px auto;
-            border: 1px solid #cbcbcb;
-        }
-        #img_div:after{
-            content: "";
-            display: block;
-            clear: both;
-        }
-        img{
-            float: left;
-            margin: 5px;
-            width: 300px;
-            height: 140px;
-        }
-    </style>
 {% endblock %}
