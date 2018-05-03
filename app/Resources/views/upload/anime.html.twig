@@ -13,7 +13,7 @@
             <a href="{{ path('hentai') }}">Hentai</a>
             {% if is_granted('ROLE_ADMIN')%}
                 <a href="{{ path('Uploader') }}">Uploader</a>
-                <a href="{{ path('animeUploader') }}">Anime Uploader</a>
+                <a href="{{ path('animeUploader') }}" class="current">Anime Uploader</a>
                 <a href="{{ path('hentaiUploader') }}">Hentai Uploader</a>
                 <a href="{{ path('logout') }}">Logout</a>
             {% endif %}

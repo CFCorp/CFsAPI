@@ -5,9 +5,9 @@
         <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }}</h1>
         <div id="navside" class="sidenav">
             <span class="closebtn">&times;</span>
-            <a href="{{ path('homepage') }}" class="current">Home</a>
+            <a href="{{ path('homepage') }}" >Home</a>
             {% if not is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('login') }}">Login</a>
+                <a href="{{ path('login') }}" class="current">Login</a>
             {% endif %}
             <a href="{{ path('anime') }}">Anime</a>
             <a href="{{ path('hentai') }}">Hentai</a>
