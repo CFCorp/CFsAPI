@@ -91,7 +91,7 @@ class UploadController extends Controller
             $target = "/var/www/hentai/".basename($nieuweFotoNaam);
             $em = $this->getDoctrine()->getManager();
             $connection = $em->getConnection();
-            $statement = $connection->prepare("INSERT INTO anime (url) VALUES ('https://hentai.computerfreaker.cf/$nieuweFotoNaam')");
+            $statement = $connection->prepare("INSERT INTO hentai (url) VALUES ('https://hentai.computerfreaker.cf/$nieuweFotoNaam')");
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
                 $statement->execute();
