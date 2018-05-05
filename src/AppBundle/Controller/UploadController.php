@@ -14,42 +14,48 @@ class UploadController extends Controller
     {
         // If upload button is clicked ...
         if (isset($_POST['upload'])) {
-            // Get image name
-            $image = $_FILES['image']['name'];
-            $image_tmp_name = $_FILES['image']['tmp_name'];
-            $finfo = new \finfo(FILEINFO_MIME_TYPE);
-            $mime = $finfo->file($_FILES['image']['tmp_name']);
 
-            $allowed = array(
-                'jpeg'=>'image/jpeg',
-                'jpg' => 'image/jpg',
-                'png'=>'image/png',
-                'gif'=>'image/gif',
-            );
-            $ext = array_search($mime,$allowed,true);
+            $total = count($_FILES['image']['name']);
 
-            $tijd = getdate();
-            $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
-            $teller =0;
-            $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-            while(file_exists("cdn/".$nieuweFotoNaam))
-            {
-                $tehashenNaam = $teller.$tehashenNaam;
+            // Loop through each file
+            for($i=0; $i<$total; $i++) {
+                // Get image name
+                $image = $_FILES['image']['name'][$i];
+                $image_tmp_name = $_FILES['image']['tmp_name'][$i];
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
+
+                $allowed = array(
+                    'jpeg'=>'image/jpeg',
+                    'jpg' => 'image/jpg',
+                    'png'=>'image/png',
+                    'gif'=>'image/gif',
+                );
+                $ext = array_search($mime,$allowed,true);
+
+                $tijd = getdate();
+                $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
+                $teller =0;
                 $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-                $teller++;
-            }
+                while(file_exists("/var/www/cdn/".$nieuweFotoNaam))
+                {
+                    $tehashenNaam = $teller.$tehashenNaam;
+                    $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+                    $teller++;
+                }
 
-            // image file directory
-            $target = "/var/www/cdn/".basename($nieuweFotoNaam);
-            $em = $this->getDoctrine()->getManager();
-            $connection = $em->getConnection();
-            $statement = $connection->prepare("INSERT INTO anime (url) VALUES ('https://cdn.computerfreaker.cf/$nieuweFotoNaam')");
+                // image file directory
+                $target = "/var/www/cdn/".basename($nieuweFotoNaam);
+                $em = $this->getDoctrine()->getManager();
+                $connection = $em->getConnection();
+                $statement = $connection->prepare("INSERT INTO anime (url) VALUES ('https://cdn.computerfreaker.cf/$nieuweFotoNaam')");
 
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-                $statement->execute();
-            }else{
-                $msg = "Failed to upload image";
-                return $msg;
+                if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
+                    $statement->execute();
+                }else{
+                    $msg = "Failed to upload image";
+                    return $msg;
+                }
             }
         }
         return $this->render('upload/anime.html.twig');
@@ -63,42 +69,48 @@ class UploadController extends Controller
     {
         // If upload button is clicked ...
         if (isset($_POST['upload'])) {
-            // Get image name
-            $image = $_FILES['image']['name'];
-            $image_tmp_name = $_FILES['image']['tmp_name'];
-            $finfo = new \finfo(FILEINFO_MIME_TYPE);
-            $mime = $finfo->file($_FILES['image']['tmp_name']);
 
-            $allowed = array(
-                'jpeg'=>'image/jpeg',
-                'jpg' => 'image/jpg',
-                'png'=>'image/png',
-                'gif'=>'image/gif',
-            );
-            $ext = array_search($mime,$allowed,true);
+            $total = count($_FILES['image']['name']);
 
-            $tijd = getdate();
-            $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
-            $teller =0;
-            $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-            while(file_exists("hentai/".$nieuweFotoNaam))
-            {
-                $tehashenNaam = $teller.$tehashenNaam;
+            // Loop through each file
+            for($i=0; $i<$total; $i++) {
+                // Get image name
+                $image = $_FILES['image']['name'][$i];
+                $image_tmp_name = $_FILES['image']['tmp_name'][$i];
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
+
+                $allowed = array(
+                    'jpeg'=>'image/jpeg',
+                    'jpg' => 'image/jpg',
+                    'png'=>'image/png',
+                    'gif'=>'image/gif',
+                );
+                $ext = array_search($mime,$allowed,true);
+
+                $tijd = getdate();
+                $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
+                $teller =0;
                 $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-                $teller++;
-            }
+                while(file_exists("/var/www/hentai/".$nieuweFotoNaam))
+                {
+                    $tehashenNaam = $teller.$tehashenNaam;
+                    $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+                    $teller++;
+                }
 
-            // image file directory
-            $target = "/var/www/hentai/".basename($nieuweFotoNaam);
-            $em = $this->getDoctrine()->getManager();
-            $connection = $em->getConnection();
-            $statement = $connection->prepare("INSERT INTO hentai (url) VALUES ('https://hentai.computerfreaker.cf/$nieuweFotoNaam')");
+                // image file directory
+                $target = "/var/www/hentai/".basename($nieuweFotoNaam);
+                $em = $this->getDoctrine()->getManager();
+                $connection = $em->getConnection();
+                $statement = $connection->prepare("INSERT INTO hentai (url) VALUES ('https://hentai.computerfreaker.cf/$nieuweFotoNaam')");
 
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-                $statement->execute();
-            }else{
-                $msg = "Failed to upload image";
-                return $msg;
+                if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
+                    $statement->execute();
+                }else{
+                    $msg = "Failed to upload image";
+                    return $msg;
+                }
             }
         }
         return $this->render('upload/hentai.html.twig');
