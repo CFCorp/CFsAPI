@@ -6,10 +6,12 @@
  * Time: 13:30
  */
 
-namespace AppBundle\Handler;
+namespace AppBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
@@ -36,6 +38,11 @@ class ExceptionListener
             $response->headers->replace($exception->getHeaders());
         } else {
             $response->setStatusCode(500);
+            return;
+        }
+
+        if($exception instanceof NotFoundHttpException){
+            $response = new RedirectResponse('https://www.computerfreaker.cf/404.html', 302);
         }
 
         // Send the modified response object to the event
@@ -45,7 +52,7 @@ class ExceptionListener
     public function onNotFoundException(NotFoundHttpException $exception){
         $broken = $exception->getStatusCode();
 
-        if($exception instanceof NotFoundHttpException){
+        if($broken instanceof NotFoundHttpException){
             $response = new RedirectResponse('https://www.computerfreaker.cf/404.html', 302);
             return $response;
         }
