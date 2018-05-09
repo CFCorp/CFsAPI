@@ -37,6 +37,6 @@ services:
       class: AppBundle\Handler\LoginSuccessHandler
       arguments: ["@router", "@security.authorization_checker"]
 
-    AppBundle\EventListener\ExceptionListener:
+    AppBundle\Handler\ExceptionListener:
       tags:
         - { name: kernel.event_listener, event: kernel.exception }
