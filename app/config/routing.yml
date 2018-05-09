@@ -7,6 +7,12 @@ hentai:
 anime:
     resource: '@AppBundle/Controller/Api/v1/AnimeController.php'
     type: annotation
+dva:
+    resource: '@AppBundle/Controller/Api/v1/DVAController.php'
+    type: annotation
+trap:
+    resource: '@AppBundle/Controller/Api/v1/TrapController.php'
+    type: annotation
 logout:
   path: /logout
 login:

@@ -33,6 +33,25 @@ class DefaultController extends Controller
         return $animeCount[0]['cnt'];
     }
 
+    public function getDVACount(){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as cnt FROM `dva`");
+        $statement->execute();
+        $dvaCount = $statement->fetchAll();
+
+        return $dvaCount[0]['cnt'];
+    }
+
+    public function getTrapCount(){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as cnt FROM `trap`");
+        $statement->execute();
+        $trapCount = $statement->fetchAll();
+
+        return $trapCount[0]['cnt'];
+    }
 
     /**
      * @Route("/", name="homepage")
@@ -41,10 +60,14 @@ class DefaultController extends Controller
     {
         $hentaiCount = $this->getHentaiCount();
         $animeCount = $this->getAnimeCount();
+        $dvaCount = $this->getDVACount();
+        $trapCount = $this->getTrapCount();
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'hentai' => $hentaiCount,
-            'anime' => $animeCount
+            'anime' => $animeCount,
+            'dva' => $dvaCount,
+            'trap' => $trapCount
         ));
     }
 }

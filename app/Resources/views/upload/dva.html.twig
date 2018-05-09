@@ -2,7 +2,7 @@
 {% block body %}
     <div class="nav-container">
         <span id="menu-icon"></span>
-        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }} hentai uploader</h1>
+        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }} D.VA uploader</h1>
         <div id="navside" class="sidenav">
             <span class="closebtn">&times;</span>
             <a href="{{ path('homepage') }}">Home</a>
@@ -29,7 +29,7 @@
         </script>
     </div>
     <div id="content">
-        <form method="POST" action="{{ path('hentaiUploader') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ path('dvaUploader') }}" enctype="multipart/form-data">
             <input type="hidden" name="size" value="1000000">
             <div>
                 <input type="file" name="image[]" multiple="multiple">
@@ -42,7 +42,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <title>Hentai Upload</title>
+    <title>Anime Upload</title>
     <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
     <style type="text/css">
         #content{

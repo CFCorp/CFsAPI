@@ -2,7 +2,7 @@
 {% block body %}
     <div class="nav-container">
         <span id="menu-icon"></span>
-        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }}</h1>
+        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }} anime uploader</h1>
         <div id="navside" class="sidenav">
             <span class="closebtn">&times;</span>
             <a href="{{ path('homepage') }}">Home</a>
@@ -11,15 +11,19 @@
             {% endif %}
             <a href="{{ path('anime') }}">Anime</a>
             <a href="{{ path('hentai') }}">Hentai</a>
+            <a href="{{ path('dva') }}">D.VA</a>
+            <a href="{{ path('trap') }}">Trap</a>
             {% if is_granted('ROLE_ADMIN')%}
                 <a href="{{ path('Uploader') }}">Uploader</a>
                 <a href="{{ path('animeUploader') }}" class="current">Anime Uploader</a>
                 <a href="{{ path('hentaiUploader') }}">Hentai Uploader</a>
+                <a href="{{ path('dvaUploader') }}">D.VA Uploader</a>
+                <a href="{{ path('trapUploader') }}">Trap Uploader</a>
                 <a href="{{ path('logout') }}">Logout</a>
             {% endif %}
         </div>
         <script>
-            var navside = document.getElementById('navside');
+            let navside = document.getElementById('navside');
             document.getElementById("menu-icon").onclick = function() { navside.style.width = "250px"; }
             document.getElementsByClassName("closebtn")[0].onclick = function() { navside.style.width = "0"; }
         </script>
