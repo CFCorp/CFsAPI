@@ -6,7 +6,7 @@
  * Time: 13:30
  */
 
-namespace AppBundle\EventListener;
+namespace AppBundle\Handler;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;

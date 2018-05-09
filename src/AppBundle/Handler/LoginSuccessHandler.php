@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\EventListener;
+namespace AppBundle\Handler;
 
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Request;
