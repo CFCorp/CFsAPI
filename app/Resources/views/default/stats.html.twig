@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
     <div class="nav-container">
         <span id="menu-icon"></span>
@@ -10,7 +11,7 @@
                 <a href="{{ path('login') }}">Login</a>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
-                <a href="{{ path('stats') }}" >stats</a>
+                <a href="{{ path('stats') }}" class="current">stats</a>
             {% endif %}
             <a href="{{ path('anime') }}">Anime</a>
             <a href="{{ path('hentai') }}">Hentai</a>
@@ -21,7 +22,7 @@
                 <a href="{{ path('animeUploader') }}">Anime Uploader</a>
                 <a href="{{ path('hentaiUploader') }}">Hentai Uploader</a>
                 <a href="{{ path('dvaUploader') }}">D.VA Uploader</a>
-                <a href="{{ path('trapUploader') }}" class="current">Trap Uploader</a>
+                <a href="{{ path('trapUploader') }}">Trap Uploader</a>
                 <a href="{{ path('logout') }}">Logout</a>
             {% endif %}
         </div>
@@ -31,51 +32,32 @@
             document.getElementsByClassName("closebtn")[0].onclick = function() { navside.style.width = "0"; }
         </script>
     </div>
-    <div id="content">
-        <form method="POST" action="{{ path('trapUploader') }}" enctype="multipart/form-data">
-            <input type="hidden" name="size" value="1000000">
-            <div>
-                <input type="file" name="image[]" multiple="multiple">
+    <section class="fullscreen">
+        <div class="center-object">
+            <div class="table-container table-center center">
+                <section class="me">
+
+                </section>
             </div>
-            <div>
-                <button type="submit" name="upload">POST</button>
-            </div>
-        </form>
-    </div>
+        </div>
+    </section>
+
 {% endblock %}
 
 {% block stylesheets %}
-    <title>Anime Upload</title>
+    <meta name="og:title" content="CFs Stats">
+    <meta name="og:description" content="get all the stats of the current hosting server">
+    <meta name="og:image" content="{{ asset('https://computerfreaker.cf/profile/profile.png') }}">
+    <meta name="og:url" content="https://api.computerfreaker.cf">
     <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
-    <style type="text/css">
-        #content{
-            width: 50%;
-            margin: 20px auto;
-            border: 1px solid #cbcbcb;
-        }
-        form{
-            width: 50%;
-            margin: 20px auto;
-        }
-        form div{
-            margin-top: 5px;
-        }
-        #img_div{
-            width: 80%;
-            padding: 5px;
-            margin: 15px auto;
-            border: 1px solid #cbcbcb;
-        }
-        #img_div:after{
-            content: "";
-            display: block;
-            clear: both;
-        }
-        img{
-            float: left;
-            margin: 5px;
-            width: 300px;
-            height: 140px;
-        }
+    <style>
+
+        body { background: #000000; font: 18px/1.5 sans-serif;}
+        h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
+        .center-object h1 { font-size: 20px; }
+        h2 { font-size: 21px; margin-bottom: 1em; }
+        p { font-size: 20px;}
+        a { color: #0000F0; }
+        a:hover { text-decoration: none; }
     </style>
 {% endblock %}

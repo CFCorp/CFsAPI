@@ -34,3 +34,4 @@ security:
               target: /
     access_control:
           - {path: ^/uploader, roles: ROLE_ADMIN}
+          - {path: ^/stats, roles: [ROLE_USER, ROLE_ADMIN]}
