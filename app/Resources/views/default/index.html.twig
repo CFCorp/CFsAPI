@@ -3,7 +3,7 @@
 {% block body %}
     <div class="nav-container">
         <span id="menu-icon"></span>
-        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }} </h1>
+        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }} to the homepage</h1>
         <div id="navside" class="sidenav">
             <span class="closebtn">&times;</span>
             <a href="{{ path('homepage') }}" class="current">Home</a>
