@@ -13,6 +13,6 @@ class extraStatsController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/stats.html.twig', null);
+        return $this->render('default/stats.html.twig');
     }
 }
