@@ -22,7 +22,8 @@
                 <a href="{{ path('login') }}">Login</a>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
-                <a href="{{ path('stats') }}">stats</a>
+                <a href="{{ path('logout') }}">Logout</a>
+                <a href="{{ path('stats') }}">Stats</a>
             {% endif %}
             <a href="{{ path('categories') }}">Categories</a>
             <a href="{{ path('anime') }}">Anime</a>
@@ -38,8 +39,7 @@
                 <a href="{{ path('dvaUploader') }}">D.VA Uploader</a>
                 <a href="{{ path('trapUploader') }}">Trap Uploader</a>
                 <a href="{{ path('hugUploader') }}">Hug Uploader</a>
-                <a href="{{ path('baguetteUploader') }}">Baguette Uploader</a>
-                <a href="{{ path('logout') }}">Logout</a>
+                <a href="{{ path('baguetteUploader') }}">Baguette Uploader</a><br><br>
             {% endif %}
         </div>
         <script>
