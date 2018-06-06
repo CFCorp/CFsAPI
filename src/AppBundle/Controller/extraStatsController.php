@@ -11,7 +11,7 @@ class extraStatsController extends Controller
     /**
      * @Route("/stats", name="stats")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
         return $this->render('default/stats.html.twig', null);
     }
