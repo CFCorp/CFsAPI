@@ -1,40 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="nav-container">
-        <span id="menu-icon"></span>
-        <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }} to the  baguette uploader </h1>
-        <div id="navside" class="sidenav">
-            <span class="closebtn">&times;</span>
-            <a href="{{ path('homepage') }}">Home</a>
-            {% if not is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('login') }}">Login</a>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
-                <a href="{{ path('stats') }}" >stats</a>
-            {% endif %}
-            <a href="{{ path('anime') }}">Anime</a>
-            <a href="{{ path('hentai') }}">Hentai</a>
-            <a href="{{ path('dva') }}">D.VA</a>
-            <a href="{{ path('trap') }}">Trap</a>
-            <a href="{{ path('hug') }}">Hug</a>
-            <a href="{{ path('baguette') }}">Baguette</a>
-            {% if is_granted('ROLE_ADMIN')%}
-                <a href="{{ path('Uploader') }}">Uploader</a>
-                <a href="{{ path('animeUploader') }}">Anime Uploader</a>
-                <a href="{{ path('hentaiUploader') }}">Hentai Uploader</a>
-                <a href="{{ path('dvaUploader') }}">D.VA Uploader</a>
-                <a href="{{ path('trapUploader') }}">Trap Uploader</a>
-                <a href="{{ path('hugUploader') }}">Hug Uploader</a>
-                <a href="{{ path('baguetteUploader') }}"  class="current">Baguette Uploader</a>
-                <a href="{{ path('logout') }}">Logout</a>
-            {% endif %}
-        </div>
-        <script>
-            let navside = document.getElementById('navside');
-            document.getElementById("menu-icon").onclick = function() { navside.style.width = "250px"; }
-            document.getElementsByClassName("closebtn")[0].onclick = function() { navside.style.width = "0"; }
-        </script>
-    </div>
     <div id="content">
         <form method="POST" action="{{ path('baguetteUploader') }}" enctype="multipart/form-data">
             <input type="hidden" name="size" value="1000000">
