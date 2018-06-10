@@ -42,7 +42,10 @@
     <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
     <style>
 
-        body { background: #000000; font: 18px/1.5 sans-serif;}
+        body { font: 18px/1.5 sans-serif;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
         h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
         .center-object h1 { font-size: 20px; }
         h2 { font-size: 21px; margin-bottom: 1em; }
@@ -50,4 +53,8 @@
         a { color: #0000F0; }
         a:hover { text-decoration: none; }
     </style>
+{% endblock %}
+
+{% block javascripts %}
+
 {% endblock %}
