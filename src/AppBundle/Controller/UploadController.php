@@ -254,7 +254,7 @@ class UploadController extends Controller
                 $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
                 $teller =0;
                 $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-                while(file_exists("/var/www/trap/".$nieuweFotoNaam))
+                while(file_exists("/var/www/hug/".$nieuweFotoNaam))
                 {
                     $tehashenNaam = $teller.$tehashenNaam;
                     $nieuweFotoNaam = md5($tehashenNaam).".$ext";
@@ -309,7 +309,7 @@ class UploadController extends Controller
                 $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
                 $teller =0;
                 $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-                while(file_exists("/var/www/trap/".$nieuweFotoNaam))
+                while(file_exists("/var/www/baguette/".$nieuweFotoNaam))
                 {
                     $tehashenNaam = $teller.$tehashenNaam;
                     $nieuweFotoNaam = md5($tehashenNaam).".$ext";
@@ -331,6 +331,114 @@ class UploadController extends Controller
             }
         }
         return $this->render('upload/baguette.html.twig');
+    }
+
+    /**
+     * @Route("/uploader/neko", name="nekoUploader")
+     */
+    public function nekoAction()
+    {
+        // If upload button is clicked ...
+        if (isset($_POST['upload'])) {
+
+            $total = count($_FILES['image']['name']);
+
+            // Loop through each file
+            for($i=0; $i<$total; $i++) {
+                // Get image name
+                $image = $_FILES['image']['name'][$i];
+                $image_tmp_name = $_FILES['image']['tmp_name'][$i];
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
+
+                $allowed = array(
+                    'jpeg'=>'image/jpeg',
+                    'jpg' => 'image/jpg',
+                    'png'=>'image/png',
+                    'gif'=>'image/gif',
+                );
+                $ext = array_search($mime,$allowed,true);
+
+                $tijd = getdate();
+                $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
+                $teller =0;
+                $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+                while(file_exists("/var/www/neko/".$nieuweFotoNaam))
+                {
+                    $tehashenNaam = $teller.$tehashenNaam;
+                    $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+                    $teller++;
+                }
+
+                // image file directory
+                $target = "/var/www/neko/".basename($nieuweFotoNaam);
+                $em = $this->getDoctrine()->getManager();
+                $connection = $em->getConnection();
+                $statement = $connection->prepare("INSERT INTO neko (url) VALUES ('https://neko.computerfreaker.cf/$nieuweFotoNaam')");
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
+                    $statement->execute();
+                }else{
+                    $msg = "Failed to upload image";
+                    return $msg;
+                }
+            }
+        }
+        return $this->render('upload/neko.html.twig');
+    }
+
+    /**
+     * @Route("/uploader/nsfwneko", name="nsfwnekoUploader")
+     */
+    public function nsfwnekoAction()
+    {
+        // If upload button is clicked ...
+        if (isset($_POST['upload'])) {
+
+            $total = count($_FILES['image']['name']);
+
+            // Loop through each file
+            for($i=0; $i<$total; $i++) {
+                // Get image name
+                $image = $_FILES['image']['name'][$i];
+                $image_tmp_name = $_FILES['image']['tmp_name'][$i];
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
+
+                $allowed = array(
+                    'jpeg'=>'image/jpeg',
+                    'jpg' => 'image/jpg',
+                    'png'=>'image/png',
+                    'gif'=>'image/gif',
+                );
+                $ext = array_search($mime,$allowed,true);
+
+                $tijd = getdate();
+                $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
+                $teller =0;
+                $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+                while(file_exists("/var/www/nsfwneko/".$nieuweFotoNaam))
+                {
+                    $tehashenNaam = $teller.$tehashenNaam;
+                    $nieuweFotoNaam = md5($tehashenNaam).".$ext";
+                    $teller++;
+                }
+
+                // image file directory
+                $target = "/var/www/nsfwneko/".basename($nieuweFotoNaam);
+                $em = $this->getDoctrine()->getManager();
+                $connection = $em->getConnection();
+                $statement = $connection->prepare("INSERT INTO nsfwneko (url) VALUES ('https://neko.computerfreaker.cf/$nieuweFotoNaam')");
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
+                    $statement->execute();
+                }else{
+                    $msg = "Failed to upload image";
+                    return $msg;
+                }
+            }
+        }
+        return $this->render('upload/nsfwneko.html.twig');
     }
 
     /**

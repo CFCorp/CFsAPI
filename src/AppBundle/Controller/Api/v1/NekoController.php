@@ -8,17 +8,17 @@
 
 namespace AppBundle\Controller\Api\v1;
 
-use AppBundle\Entity\Hug;
+use AppBundle\Entity\Neko;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class HugController extends Controller
+class NekoController extends Controller
 {
     /**
-     * @Route("/v1/hug",name="hug")
+     * @Route("/v1/neko",name="neko")
      * @Method("GET")
      * @param $id
      */
@@ -31,7 +31,7 @@ class HugController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM hug ORDER BY RAND() LIMIT 1");
+        $statement = $connection->prepare("SELECT url FROM neko ORDER BY RAND() LIMIT 1");
 
         $statement->execute();
         $hug = $statement->fetch();

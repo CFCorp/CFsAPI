@@ -8,7 +8,7 @@
 
 namespace AppBundle\Controller\Api\v1;
 
-use AppBundle\Entity\Hentai;
+use AppBundle\Entity\Baguette;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
