@@ -23,6 +23,6 @@ class CategoriesController extends Controller
         $response->headers->set('Cache-Control','no-cache');
         $response->send();
 
-        return new JsonResponse(array("anime", "baguette", "dva", "hentai", "hug", "trap"));
+        return new JsonResponse(array("anime", "baguette", "dva", "hentai", "hug", "trap", "nsfwneko", "neko", "yuri"));
     }
 }
