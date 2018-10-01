@@ -73,6 +73,16 @@ class DefaultController extends Controller
         return $baguetteCount[0]['cnt'];
     }
 
+    public function getYuriCount(){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as cnt FROM `yuri`");
+        $statement->execute();
+        $yuriCount = $statement->fetchAll();
+
+        return $yuriCount[0]['cnt'];
+    }
+
 
     /**
      * @Route("/", name="homepage")
@@ -85,6 +95,7 @@ class DefaultController extends Controller
         $trapCount = $this->getTrapCount();
         $hugCount = $this->getHugCount();
         $baguetteCount = $this->getBaguetteCount();
+        $yuriCount = $this->getYuriCount();
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'hentai' => $hentaiCount,
@@ -92,7 +103,8 @@ class DefaultController extends Controller
             'dva' => $dvaCount,
             'trap' => $trapCount,
             'hug' => $hugCount,
-            'baguette' => $baguetteCount
+            'baguette' => $baguetteCount,
+            'yuri' => $yuriCount
         ));
     }
 }
