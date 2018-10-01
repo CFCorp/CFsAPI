@@ -1,6 +1,5 @@
 # CFsAPI
-
-a small API that sends anime/hentai images in JSON
+A small API that sends anime/hentai images in JSON.
 
 [![Discord](https://discordapp.com/api/guilds/434436407646486528/widget.png)](https://discord.gg/gzWwtWG)
 
@@ -10,33 +9,33 @@ a small API that sends anime/hentai images in JSON
 
 # Other stuff
 
-### coming soon
+### Coming soon
 
-- more endpoints
-- improved randomness
-- better response times
+- More endpoints
+- Improved randomness
+- Better response times
 
 #### FAQ
 
  Can i help
-- yes of course just make a PR
+- Yes of course just make a PR.
 
  Will it work on my PC
-- i don't recommend using my stuff but only for testing purposes (maybe)
+- I don't recommend using my stuff but only for testing purposes (maybe).
 
 # Requirements:
-- web server (Apache/Nginx, PHP, MySQL)
-- redis
+- Web server (Apache/Nginx, PHP, MySQL)
+- Redis
 
 ### How to setup for dummy's
-with phpstorm (with php in path (or add it in your path)):
+With phpstorm (with php in path (or add it in your path)):
     setup composer (be sure it downloads composer.phar)
-    and run this command in a terminal in the project directory `php composer.phar install`
+    and run this command in a terminal in the project directory `php composer.phar install`.
 
-download & install composer and after that run this in the project directory
-`composer install --optimize-autoloader`
+Download & install composer and after that run this in the project directory
+`composer install --optimize-autoloader`.
 
 
-##### setup doctrine (database)
-check the parameters in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
-if everything works except for the sync error run this to sync it `php bin\console doctrine:schema:update --force`
+##### Setup doctrine (database)
+Check the parameters in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
+if everything works except for the sync error run this to sync it `php bin\console doctrine:schema:update --force`.
