@@ -492,7 +492,7 @@ class UploadController extends Controller
                 }
             }
         }
-        return $this->render('upload/nsfwneko.html.twig');
+        return $this->render('upload/yuri.html.twig');
     }
     /**
      * @Route("/uploader", name="Uploader")
