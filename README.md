@@ -8,6 +8,8 @@ a small API that sends anime/hentai images in JSON
 | --- | --- |
 | **Follow me on Twitter.** | **Join my Discord server for help.** |
 
+# Other stuff
+
 ### coming soon
 
 - more endpoints
