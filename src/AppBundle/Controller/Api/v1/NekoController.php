@@ -30,13 +30,17 @@ class NekoController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM neko ORDER BY RAND() LIMIT 1");
+        $repo = $em->getRepository('AppBundle:Neko');
 
-        $statement->execute();
-        $hug = $statement->fetch();
+        $neko = $repo->createQueryBuilder('n')
+            ->select('n.url')
+            ->from('AppBundle:Neko', 'n')
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
 
-        $data = $hug;
+        $data = $neko;
 
         return new JsonResponse($data);
     }

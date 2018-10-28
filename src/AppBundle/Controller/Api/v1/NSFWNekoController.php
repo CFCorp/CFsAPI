@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class NekoController extends Controller
+class NSFWNekoController extends Controller
 {
     /**
      * @Route("/v1/nsfwneko",name="nsfwneko")
@@ -30,13 +30,17 @@ class NekoController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM nsfwneko ORDER BY RAND() LIMIT 1");
+        $repo = $em->getRepository('AppBundle:NSFWNeko');
 
-        $statement->execute();
-        $hug = $statement->fetch();
+        $nsfwneko = $repo->createQueryBuilder('nn')
+            ->select('nn.url')
+            ->from('AppBundle:NSFWNeko', 'nn')
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
 
-        $data = $hug;
+        $data = $nsfwneko;
 
         return new JsonResponse($data);
     }
