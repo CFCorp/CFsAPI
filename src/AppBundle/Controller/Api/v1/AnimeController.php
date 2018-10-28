@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AnimeController extends Controller
 {
+
     /**
      * @Route("/v1/anime", name="anime")
      * @Method("GET")
@@ -29,14 +30,20 @@ class AnimeController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM anime ORDER BY RAND() LIMIT 1");
+        $repo = $em->getRepository('AppBundle:Anime');
 
-        $statement->execute();
-        $anime = $statement->fetch();
+        $anime = $repo->createQueryBuilder('a')
+            ->select('a.url')
+            ->from('AppBundle:Anime', 'a')
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
 
         $data = $anime;
 
         return new JsonResponse($data);
     }
+
+
 }

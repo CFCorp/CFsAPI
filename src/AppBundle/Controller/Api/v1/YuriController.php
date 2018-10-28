@@ -29,11 +29,15 @@ class YuriController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM yuri ORDER BY RAND() LIMIT 1");
+        $repo = $em->getRepository('AppBundle:Yuri');
 
-        $statement->execute();
-        $yuri = $statement->fetch();
+        $yuri = $repo->createQueryBuilder('y')
+            ->select('y.url')
+            ->from('AppBundle:Yuri', 'y')
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
 
         $data = $yuri;
 

@@ -30,11 +30,15 @@ class HentaiController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM hentai ORDER BY RAND() LIMIT 1");
+        $repo = $em->getRepository('AppBundle:Hentai');
 
-        $statement->execute();
-        $hentai = $statement->fetch();
+        $hentai = $repo->createQueryBuilder('h')
+            ->select('h.url')
+            ->from('AppBundle:Hentai', 'h')
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
 
         $data = $hentai;
 
