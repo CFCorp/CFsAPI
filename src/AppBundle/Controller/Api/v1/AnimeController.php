@@ -40,11 +40,7 @@ class AnimeController extends Controller
             ->getQuery()
             ->getResult();
 
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") ."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-        $thing = "$actual_link" . "$anime";
-
-        $data = $thing;
+        $data = $anime;
 
         return new JsonResponse($data);
     }

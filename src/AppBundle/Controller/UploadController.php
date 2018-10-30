@@ -123,7 +123,7 @@ class UploadController extends Controller
             $target = "/var/www/". $subDomain ."/".basename($nieuweFotoNaam);
             $em = $this->getDoctrine()->getManager();
             $connection = $em->getConnection();
-            $statement = $connection->prepare("INSERT INTO ". $subDomain ." (url) VALUES ('$nieuweFotoNaam')");
+            $statement = $connection->prepare("INSERT INTO ". $subDomain ." (url) VALUES ('https://". $subDomain .".computerfreaker.cf/$nieuweFotoNaam')");
             if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
                 $statement->execute();
             }else{

@@ -39,11 +39,7 @@ class YuriController extends Controller
             ->getQuery()
             ->getResult();
 
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") ."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-        $thing = "$actual_link" . "$yuri";
-
-        $data = $thing;
+        $data = $yuri;
 
         return new JsonResponse($data);
     }
