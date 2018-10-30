@@ -39,7 +39,11 @@ class TrapController extends Controller
             ->getQuery()
             ->getResult();
 
-        $data = $trap;
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") ."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        $thing = "$actual_link" . "$trap";
+
+        $data = $thing;
 
         return new JsonResponse($data);
     }

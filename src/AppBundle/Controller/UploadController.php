@@ -90,7 +90,8 @@ class UploadController extends Controller
         return $this->render('upload/yuri.html.twig');
     }
 
-    public function SaveUploads($subDomain){
+    public function SaveUploads($subDomain)
+    {
         $total = count($_FILES['image']['name']);
         $success = true;
         
@@ -122,7 +123,7 @@ class UploadController extends Controller
             $target = "/var/www/". $subDomain ."/".basename($nieuweFotoNaam);
             $em = $this->getDoctrine()->getManager();
             $connection = $em->getConnection();
-            $statement = $connection->prepare("INSERT INTO ". $subDomain ." (url) VALUES ('https://". $subDomain .".computerfreaker.cf/$nieuweFotoNaam')");
+            $statement = $connection->prepare("INSERT INTO ". $subDomain ." (url) VALUES ('$nieuweFotoNaam')");
             if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
                 $statement->execute();
             }else{

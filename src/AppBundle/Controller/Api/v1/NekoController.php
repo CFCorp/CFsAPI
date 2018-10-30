@@ -40,7 +40,11 @@ class NekoController extends Controller
             ->getQuery()
             ->getResult();
 
-        $data = $neko;
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") ."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        $thing = "$actual_link" . "$neko";
+
+        $data = $thing;
 
         return new JsonResponse($data);
     }

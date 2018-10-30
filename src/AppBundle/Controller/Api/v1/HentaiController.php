@@ -40,8 +40,11 @@ class HentaiController extends Controller
             ->getQuery()
             ->getResult();
 
-        $data = $hentai;
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") ."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+        $thing = "$actual_link" . "$hentai";
+
+        $data = $thing;
         return new JsonResponse($data);
     }
 }
