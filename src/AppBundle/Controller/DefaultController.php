@@ -83,6 +83,26 @@ class DefaultController extends Controller
         return $yuriCount[0]['cnt'];
     }
 
+    public function getNekoCount(){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as cnt FROM `neko`");
+        $statement->execute();
+        $nekoCount = $statement->fetchAll();
+
+        return $nekoCount[0]['cnt'];
+    }
+
+    public function getNSFWNekoCount(){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as cnt FROM `nsfwneko`");
+        $statement->execute();
+        $nsfwnekoCount = $statement->fetchAll();
+
+        return $nsfwnekoCount[0]['cnt'];
+    }
+
 
     /**
      * @Route("/", name="homepage")
@@ -96,6 +116,8 @@ class DefaultController extends Controller
         $hugCount = $this->getHugCount();
         $baguetteCount = $this->getBaguetteCount();
         $yuriCount = $this->getYuriCount();
+        $nekoCount = $this->getNekoCount();
+        $nsfwnekoCount = $this->getNSFWNekoCount();
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'hentai' => $hentaiCount,
@@ -104,7 +126,9 @@ class DefaultController extends Controller
             'trap' => $trapCount,
             'hug' => $hugCount,
             'baguette' => $baguetteCount,
-            'yuri' => $yuriCount
+            'yuri' => $yuriCount,
+            'neko' => $nekoCount,
+            'nsfwneko' => $nsfwnekoCount
         ));
     }
 }
