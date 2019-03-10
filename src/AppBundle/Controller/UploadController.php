@@ -12,7 +12,7 @@ class UploadController extends Controller
      */
     public function animeAction()
     {
-        SaveUploads("anime");
+        self::SaveUploads("anime");
         return $this->render('upload/anime.html.twig');
 
     }
@@ -22,7 +22,7 @@ class UploadController extends Controller
      */
     public function hentaiAction()
     {
-        SaveUploads("hentai");
+        self::SaveUploads("hentai");
         return $this->render('upload/hentai.html.twig');
     }
 
@@ -31,7 +31,7 @@ class UploadController extends Controller
      */
     public function dvaAction()
     {
-        SaveUploads("dva");
+        self::SaveUploads("dva");
         return $this->render('upload/dva.html.twig');
     }
 
@@ -40,7 +40,7 @@ class UploadController extends Controller
      */
     public function trapAction()
     {
-        SaveUploads("trap");
+        self::SaveUploads("trap");
         return $this->render('upload/trap.html.twig');
     }
 
@@ -49,7 +49,7 @@ class UploadController extends Controller
      */
     public function hugAction()
     {
-        SaveUploads("hug");
+        self::SaveUploads("hug");
         return $this->render('upload/hug.html.twig');
     }
 
@@ -59,7 +59,7 @@ class UploadController extends Controller
      */
     public function baguetteAction()
     {
-        SaveUploads("baguette");
+        self::SaveUploads("baguette");
         return $this->render('upload/baguette.html.twig');
     }
 
@@ -68,7 +68,7 @@ class UploadController extends Controller
      */
     public function nekoAction()
     {
-        SaveUploads("neko");
+        self::SaveUploads("neko");
         return $this->render('upload/neko.html.twig');
     }
 
@@ -77,7 +77,7 @@ class UploadController extends Controller
      */
     public function nsfwnekoAction()
     {
-        SaveUploads("nsfwneko");
+        self::SaveUploads("nsfwneko");
         return $this->render('upload/nsfwneko.html.twig');
     }
 
@@ -86,53 +86,8 @@ class UploadController extends Controller
      */
     public function yuriAction()
     {
-        SaveUploads("yuri");
+        self::SaveUploads("yuri");
         return $this->render('upload/yuri.html.twig');
-    }
-
-    public function SaveUploads($subDomain)
-    {
-        $total = count($_FILES['image']['name']);
-        $success = true;
-        
-        // Loop through each file
-        for($i=0; $i < $total; $i++) {
-            // Get image name
-            $image = $_FILES['image']['name'][$i];
-            $image_tmp_name = $_FILES['image']['tmp_name'][$i];
-            $finfo = new \finfo(FILEINFO_MIME_TYPE);
-            $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
-            $allowed = array(
-                'jpeg'=>'image/jpeg',
-                'jpg' => 'image/jpg',
-                'png'=>'image/png',
-                'gif'=>'image/gif',
-            );
-            $ext = array_search($mime,$allowed,true);
-            $tijd = getdate();
-            $tehashenNaam = $image.$image_tmp_name.$tijd[0].$tijd['weekday'].".$ext";
-            $teller = 0;
-            $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-            while(file_exists("/var/www/". $subDomain ."/".$nieuweFotoNaam))
-            {
-                $tehashenNaam = $teller.$tehashenNaam;
-                $nieuweFotoNaam = md5($tehashenNaam).".$ext";
-                $teller++;
-            }
-            // image file directory
-            $target = "/var/www/". $subDomain ."/".basename($nieuweFotoNaam);
-            $em = $this->getDoctrine()->getManager();
-            $connection = $em->getConnection();
-            $statement = $connection->prepare("INSERT INTO ". $subDomain ." (url) VALUES ('https://". $subDomain .".computerfreaker.cf/$nieuweFotoNaam')");
-            if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
-                $statement->execute();
-            }else{
-                /* $msg = "Failed to upload image";
-                return $msg; */
-                $success = false;
-            }
-        }
-        return $success;
     }
 
     /**
@@ -143,4 +98,49 @@ class UploadController extends Controller
         return $this->render('upload/uploader.html.twig');
     }
 
+    public function SaveUploads($subDomain)
+    {
+        if (isset($_POST['upload'])) {
+            $total = count($_FILES['image']['name']);
+            $success = true;
+
+            // Loop through each file
+            for ($i = 0; $i < $total; $i++) {
+                // Get image name
+                $image = $_FILES['image']['name'][$i];
+                $image_tmp_name = $_FILES['image']['tmp_name'][$i];
+                $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
+                $allowed = array(
+                    'jpeg' => 'image/jpeg',
+                    'jpg' => 'image/jpg',
+                    'png' => 'image/png',
+                    'gif' => 'image/gif',
+                );
+                $ext = array_search($mime, $allowed, true);
+                $tijd = getdate();
+                $tehashenNaam = $image . $image_tmp_name . $tijd[0] . $tijd['weekday'] . ".$ext";
+                $teller = 0;
+                $nieuweFotoNaam = md5($tehashenNaam) . ".$ext";
+                while (file_exists("/var/www/" . $subDomain . "/" . $nieuweFotoNaam)) {
+                    $tehashenNaam = $teller . $tehashenNaam;
+                    $nieuweFotoNaam = md5($tehashenNaam) . ".$ext";
+                    $teller++;
+                }
+                // image file directory
+                $target = "/var/www/" . $subDomain . "/" . basename($nieuweFotoNaam);
+                $em = $this->getDoctrine()->getManager();
+                $connection = $em->getConnection();
+                $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('https://" . $subDomain . ".computerfreaker.cf/$nieuweFotoNaam')");
+                if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $target)) {
+                    $statement->execute();
+                } else {
+                    /* $msg = "Failed to upload image";
+                    return $msg; */
+                    $success = false;
+                }
+            }
+            return $success;
+        }
+    }
 }

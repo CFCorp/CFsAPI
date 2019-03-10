@@ -23,7 +23,6 @@
             {% endif %}
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
                 <a href="{{ path('logout') }}">Logout</a>
-                <a href="{{ path('stats') }}">Stats</a>
             {% endif %}
             <a href="{{ path('categories') }}">Categories</a>
             <a href="{{ path('anime') }}">Anime</a>
