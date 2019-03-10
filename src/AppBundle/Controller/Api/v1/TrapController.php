@@ -29,17 +29,11 @@ class TrapController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:Trap');
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM trap ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $trap = $statement->fetch();
 
-        $trap = $repo->createQueryBuilder('t')
-            ->select('t.url')
-            ->from('AppBundle:Trap', 't')
-            ->orderBy('RAND()')
-            ->setMaxResults(1)
-            ->getQuery();
-
-        $data = $trap;
-
-        return new JsonResponse($data);
+        return new JsonResponse($trap);
     }
 }

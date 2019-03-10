@@ -30,17 +30,12 @@ class BaguetteController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:Baguette');
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM baguette ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $baguette = $statement->fetch();
 
-        $baguette = $repo->createQueryBuilder('b')
-            ->select('b.url')
-            ->from('AppBundle:Baguette', 'b')
-            ->orderBy('RAND()')
-            ->setMaxResults(1)
-            ->getQuery();
 
-        $data = $baguette;
-
-        return new JsonResponse($data);
+        return new JsonResponse($baguette);
     }
 }

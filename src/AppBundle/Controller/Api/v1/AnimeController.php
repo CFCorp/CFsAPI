@@ -12,7 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class AnimeController extends Controller
 {
@@ -22,7 +24,7 @@ class AnimeController extends Controller
      * @Method("GET")
      * @param $id
      */
-    public function getAction() {
+    public function getAction(Request $request) {
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
         $response->headers->set('Access-Control-Allow-Origin','*');
@@ -30,18 +32,12 @@ class AnimeController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:Anime');
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM anime ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $anime = $statement->fetch();
 
-        $anime = $repo->createQueryBuilder('a')
-            ->select('a.url')
-            ->from('AppBundle:Anime', 'a')
-            ->orderBy('RAND()')
-            ->setMaxResults(1)
-            ->getQuery();
-
-        $data = $anime;
-
-        return new JsonResponse($data);
+        return new JsonResponse($anime);
     }
 
 

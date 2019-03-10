@@ -30,17 +30,11 @@ class NSFWNekoController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:NSFWNeko');
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM nsfwneko ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $nsfwneko = $statement->fetch();
 
-        $nsfwneko = $repo->createQueryBuilder('nn')
-            ->select('nn.url')
-            ->from('AppBundle:NSFWNeko', 'nn')
-            ->orderBy('RAND()')
-            ->setMaxResults(1)
-            ->getQuery();
-
-        $data = $nsfwneko;
-
-        return new JsonResponse($data);
+        return new JsonResponse($nsfwneko);
     }
 }

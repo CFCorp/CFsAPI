@@ -29,17 +29,11 @@ class DVAController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:DVA');
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM dva ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $dva = $statement->fetch();
 
-        $dva = $repo->createQueryBuilder('d')
-            ->select('d.url')
-            ->from('AppBundle:DVA', 'b')
-            ->orderBy('RAND()')
-            ->setMaxResults(1)
-            ->getQuery();
-
-        $data = $dva;
-
-        return new JsonResponse($data);
+        return new JsonResponse($dva);
     }
 }

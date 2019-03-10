@@ -30,17 +30,11 @@ class HugController extends Controller
         $response->send();
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:Hug');
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM hug ORDER BY RAND() LIMIT 1");
+        $statement->execute();
+        $hug = $statement->fetch();
 
-        $hug = $repo->createQueryBuilder('hug')
-            ->select('hug.url')
-            ->from('AppBundle:Hug', 'hug')
-            ->orderBy('RAND()')
-            ->setMaxResults(1)
-            ->getQuery();
-
-        $data = $hug;
-
-        return new JsonResponse($data);
+        return new JsonResponse($hug);
     }
 }
