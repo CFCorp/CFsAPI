@@ -36,3 +36,4 @@ security:
           - {path: ^/uploader, roles: ROLE_ADMIN}
           - {path: ^/stats, roles: [ROLE_USER, ROLE_ADMIN]}
           - {path: ^/create, roles: ROLE_ADMIN}
+          - {path: ^/register, roles: ROLE_ADMIN}

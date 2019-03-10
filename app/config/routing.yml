@@ -21,3 +21,6 @@ login:
 uploader:
     resource: '@AppBundle/Controller/UploadController.php'
     type: annotation
+registration:
+    resource: '@AppBundle/Controller/Admin/CreateUserController.php'
+    type: annotation
