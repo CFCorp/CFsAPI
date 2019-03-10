@@ -37,8 +37,7 @@ class AnimeController extends Controller
             ->from('AppBundle:Anime', 'a')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $anime;
 

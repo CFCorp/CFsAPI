@@ -37,8 +37,7 @@ class BaguetteController extends Controller
             ->from('AppBundle:Baguette', 'b')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $baguette;
 

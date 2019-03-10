@@ -37,8 +37,7 @@ class NekoController extends Controller
             ->from('AppBundle:Neko', 'n')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $neko;
 

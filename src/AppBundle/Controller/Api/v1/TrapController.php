@@ -36,8 +36,7 @@ class TrapController extends Controller
             ->from('AppBundle:Trap', 't')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $trap;
 

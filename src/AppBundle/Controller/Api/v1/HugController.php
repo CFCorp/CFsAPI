@@ -37,8 +37,7 @@ class HugController extends Controller
             ->from('AppBundle:Hug', 'hug')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $hug;
 

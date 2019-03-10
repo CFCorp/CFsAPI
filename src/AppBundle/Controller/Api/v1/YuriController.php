@@ -36,8 +36,7 @@ class YuriController extends Controller
             ->from('AppBundle:Yuri', 'y')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $yuri;
 

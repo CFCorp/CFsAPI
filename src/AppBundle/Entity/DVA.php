@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DVA
  *
- * @ORM\Table(name="DVA")
+ * @ORM\Table(name="dva")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DVARepository")
  */
 class DVA

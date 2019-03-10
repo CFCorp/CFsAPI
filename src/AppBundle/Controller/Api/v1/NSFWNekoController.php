@@ -37,8 +37,7 @@ class NSFWNekoController extends Controller
             ->from('AppBundle:NSFWNeko', 'nn')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $nsfwneko;
 

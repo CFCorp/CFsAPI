@@ -37,8 +37,7 @@ class HentaiController extends Controller
             ->from('AppBundle:Hentai', 'h')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $hentai;
 

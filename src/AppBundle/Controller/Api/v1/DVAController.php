@@ -36,8 +36,7 @@ class DVAController extends Controller
             ->from('AppBundle:DVA', 'b')
             ->orderBy('RAND()')
             ->setMaxResults(1)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
 
         $data = $dva;
 
