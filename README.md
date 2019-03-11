@@ -37,5 +37,9 @@ Download & install composer and after that run this in the project directory
 
 
 ##### Setup doctrine (database)
-Check the parameters in `parameters.yml` and run `php bin\console doctrine:schema:validate` to see if the connections work
-if everything works except for the sync error run this to sync it `php bin\console doctrine:schema:update --force`.
+Check the parameters in `parameters.yml` and run `php bin/console doctrine:schema:validate` to see if the connections work
+if everything works except for the sync error run this to sync it `php bin/console doctrine:schema:update --force`.
+
+Windows users use ` \ instead of /`
+
+Recommended is Linux
