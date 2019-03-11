@@ -35,6 +35,8 @@ class NekoController extends Controller
         $statement->execute();
         $neko = $statement->fetch();
 
-        return new JsonResponse($neko);
+        $full_link = "https://neko." . $_SERVER["HTTP_HOST"]. "/" . $neko['url'];
+
+        return new JsonResponse($full_link);
     }
 }

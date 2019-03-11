@@ -37,7 +37,9 @@ class AnimeController extends Controller
         $statement->execute();
         $anime = $statement->fetch();
 
-        return new JsonResponse($anime);
+        $full_link = "https://anime." . $_SERVER["HTTP_HOST"]. "/" . $anime['url'];
+
+        return new JsonResponse($full_link);
     }
 
 

@@ -35,7 +35,8 @@ class BaguetteController extends Controller
         $statement->execute();
         $baguette = $statement->fetch();
 
+        $full_link = "https://baguette." . $_SERVER["HTTP_HOST"]. "/" . $baguette['url'];
 
-        return new JsonResponse($baguette);
+        return new JsonResponse($full_link);
     }
 }

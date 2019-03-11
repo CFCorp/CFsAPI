@@ -34,6 +34,8 @@ class DVAController extends Controller
         $statement->execute();
         $dva = $statement->fetch();
 
-        return new JsonResponse($dva);
+        $full_link = "https://dva." . $_SERVER["HTTP_HOST"]. "/" . $dva['url'];
+
+        return new JsonResponse($full_link);
     }
 }

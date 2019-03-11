@@ -35,6 +35,8 @@ class NSFWNekoController extends Controller
         $statement->execute();
         $nsfwneko = $statement->fetch();
 
-        return new JsonResponse($nsfwneko);
+        $full_link = "https://nsfwneko." . $_SERVER["HTTP_HOST"]. "/" . $nsfwneko['url'];
+
+        return new JsonResponse($full_link);
     }
 }

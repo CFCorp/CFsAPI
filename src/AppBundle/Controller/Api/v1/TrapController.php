@@ -34,6 +34,8 @@ class TrapController extends Controller
         $statement->execute();
         $trap = $statement->fetch();
 
-        return new JsonResponse($trap);
+        $full_link = "https://trap." . $_SERVER["HTTP_HOST"]. "/" . $trap['url'];
+
+        return new JsonResponse($full_link);
     }
 }

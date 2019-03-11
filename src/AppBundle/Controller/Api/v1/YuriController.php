@@ -34,6 +34,8 @@ class YuriController extends Controller
         $statement->execute();
         $yuri = $statement->fetch();
 
-        return new JsonResponse($yuri);
+        $full_link = "https://yuri." . $_SERVER["HTTP_HOST"]. "/" . $yuri['url'];
+
+        return new JsonResponse($full_link);
     }
 }

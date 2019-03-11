@@ -35,7 +35,8 @@ class HentaiController extends Controller
         $statement->execute();
         $hentai = $statement->fetch();
 
+        $full_link = "https://hentai." . $_SERVER["HTTP_HOST"]. "/" . $hentai['url'];
 
-        return new JsonResponse($hentai);
+        return new JsonResponse($full_link);
     }
 }

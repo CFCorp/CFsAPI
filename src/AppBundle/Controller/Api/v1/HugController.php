@@ -35,6 +35,8 @@ class HugController extends Controller
         $statement->execute();
         $hug = $statement->fetch();
 
-        return new JsonResponse($hug);
+        $full_link = "https://hug." . $_SERVER["HTTP_HOST"]. "/" . $hug['url'];
+
+        return new JsonResponse($full_link);
     }
 }
