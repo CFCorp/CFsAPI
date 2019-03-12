@@ -40,6 +40,9 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface{
         if($this->autherizationChecker->isGranted("ROLE_ADMIN")){
             $response = new RedirectResponse($this->router->generate('Uploader'));
         }
+        if($this->autherizationChecker->isGranted("ROLE_USER")){
+            $response = new RedirectResponse($this->router->generate("homepage"));
+        }
         return $response;
     }
 }
