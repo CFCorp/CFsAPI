@@ -41,7 +41,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface{
             $response = new RedirectResponse($this->router->generate('Uploader'));
         }
         if($this->autherizationChecker->isGranted("ROLE_USER")){
-            $response = new RedirectResponse($this->router->generate("homepage"));
+            $response = new RedirectResponse($this->router->generate("token"));
         }
         return $response;
     }
