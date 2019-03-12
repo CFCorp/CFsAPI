@@ -1,49 +1,70 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <section class="fullscreen">
-        <div class="center-object">
-            <div class="table-container table-center center">
-                <section class="me">
-                    <h1 class="title">CFs API</h1>
-                    <span class="undertitle">get a random anime | hentai | d.va | trap | hug pic</span>
-                    <h1>Here you can find all the current endpoints</h1>
-                    <section class="comment-section ">
-                        <div class="comment-container center">
-                            <div class="text">
-                                <h1 class="author">GET</h1>
-                                <span class="comment">{{ path('categories') }} | {{ path('anime') }} | {{ path('hentai') }} | {{ path('dva') }} | {{ path('trap') }} | {{ path('hug') }} | {{ path('baguette') }}</span>
-                            </div>
-                        </div>
-                    </section>
-                </section>
+    <section class="me">
+        <h1 class="title">CFs API</h1>
+        <h1>Here you can find all the current endpoints</h1>
+        <section class="comment-section ">
+            <div class="comment-container center">
+                <div class="text">
+                    <h1 class="author">GET</h1>
+                    <span class="comment">{{ path('categories') }} | {{ path('anime') }} | {{ path('hentai') }} | {{ path('dva') }} | {{ path('trap') }} | {{ path('hug') }} | {{ path('baguette') }} |
+                        {{ path('neko') }} | {{ path('nsfwneko') }}
+                        <p>There are at the moment: <br>
+                            {{ anime }} anime images, <br>
+                            {{ hentai }} hentai images, <br>
+                            {{ dva }} D.VA images, <br>
+                            {{ trap }} trap images, <br>
+                            {{ hug }} hug images, <br>
+                            {{ baguette }} baguette images, <br>
+                            {{ yuri }} yuri images, <br>
+                            {{ neko }} neko images, <br>
+                            {{ nsfwneko }} NSFW Neko images <br>
+                            click these buttons to go to the corresponding link.</p>
+                    </span>
+                </div>
             </div>
-            <div class="buttons">
-                <a href="{{ path("categories") }}" class="btn animation pomegranate" target="_blank">Categories</a>
-                <a href="{{ path("anime") }}" class="btn animation pomegranate" target="_blank">Anime</a>
-                <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
-                <a href="{{ path("yuri") }}" class="btn animation pomegranate" target="_blank">Yuri</a>
-                <a href="{{ path("dva") }}" class="btn animation pomegranate" target="_blank">D.VA</a>
-                <a href="{{ path("trap") }}" class="btn animation pomegranate" target="_blank">Trap</a>
-                <a href="{{ path("hug") }}" class="btn animation pomegranate" target="_blank">Hug</a>
-                <a href="{{ path("neko") }}" class="btn animation pomegranate" target="_blank">neko</a>
-                <a href="{{ path("nsfwneko") }}" class="btn animation pomegranate" target="_blank">nsfwneko</a>
-                <a href="{{ path("baguette") }}" class="btn animation pomegranate" target="_blank">Baguette</a>
-                <a href="https://discord.gg/rMVju6a" class="btn animation pomegranate" target="_blank">Main Server</a>
-                <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
-            </div>
-            <br><span class="center-text">
-                <p>There are at the moment {{ anime }} anime images,
-                    {{ hentai }} hentai images,
-                    {{ dva }} D.VA images,
-                    {{ trap }} trap images,
-                    {{ hug }} hug images,
-                    {{ baguette }} baguette images,
-                    {{ yuri }} yuri images,
-                    {{ neko }} neko images,
-                    {{ nsfwneko }} NSFW Neko images</p>
+        </section>
+        <div class="buttons">
+            <a href="{{ path("categories") }}" class="btn animation pomegranate" target="_blank">Categories</a>
+            <a href="{{ path("anime") }}" class="btn animation pomegranate" target="_blank">Anime</a>
+            <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
+            <a href="{{ path("yuri") }}" class="btn animation pomegranate" target="_blank">Yuri</a>
+            <a href="{{ path("dva") }}" class="btn animation pomegranate" target="_blank">D.VA</a>
+            <a href="{{ path("trap") }}" class="btn animation pomegranate" target="_blank">Trap</a>
+            <a href="{{ path("hug") }}" class="btn animation pomegranate" target="_blank">Hug</a>
+            <a href="{{ path("neko") }}" class="btn animation pomegranate" target="_blank">neko</a>
+            <a href="{{ path("nsfwneko") }}" class="btn animation pomegranate" target="_blank">nsfwneko</a>
+            <a href="{{ path("baguette") }}" class="btn animation pomegranate" target="_blank">Baguette</a>
+            <a href="https://discord.gg/rMVju6a" class="btn animation pomegranate" target="_blank">Main Server</a>
+            <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <span class="center-text">
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="_blank">logout</a></p>
             </span>
+            <div class="buttons"> uploaders:
+                <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="_blank">Anime Uploader</a>
+                <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
+                <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="_blank">D.VA Uploader</a>
+                <a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="_blank">Trap Uploader</a>
+                <a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="_blank">Hug Uploader</a>
+                <a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="_blank">Baguette Uploader</a>
+                <a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="_blank">Yuri Uploader</a>
+                <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="_blank">Neko Uploader</a>
+                <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="_blank">NSFW Neko Uploader</a>
+            </div>
+        {% elseif is_granted('ROLE_USER') %}
+            <span class="center-text">
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="_blank">logout</a></p>
+            </span>
+        {% else %}
+            <span class="center-text">
+                <p>if you have an account click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="_blank">login</a></p>
+            </span>
+        {% endif %}
         </div>
     </section>
+
 
 {% endblock %}
 

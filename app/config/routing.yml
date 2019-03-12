@@ -24,3 +24,6 @@ uploader:
 registration:
     resource: '@AppBundle/Controller/Admin/CreateUserController.php'
     type: annotation
+admin:
+    resource: '@AppBundle/Controller/Admin/AdminController.php'
+    type: annotation

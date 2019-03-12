@@ -1,35 +1,35 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <section class="fullscreen">
-        <div class="center-object">
-            <div class="table-container table-center center">
-                <section class="me">
-                    <h1 class="title">CFs API</h1>
-                    <span class="undertitle">get a random anime | hentai | d.va | trap | hug pic</span>
-                    <h1>Here you can find all the current endpoints</h1>
-                    <section class="comment-section ">
-                        <div class="comment-container center">
-                            <div class="text">
-                                <h1 class="author">GET</h1>
-                                <span class="comment">{{ path('animeUploader') }} | {{ path('hentaiUploader') }} | {{ path('dvaUploader') }} | {{ path('trapUploader') }} | {{ path('hugUploader') }} | {{ path('baguetteUploader') }} | {{ path('yuriUploader') }} | {{ path('nekoUploader') }} | {{ path('nsfwnekoUploader') }}</span>
-                            </div>
-                        </div>
-                    </section>
-                </section>
+    <section class="me">
+        <h1 class="title">CFs API</h1>
+        <h1>Here you can find all the current endpoints for uploading pictures</h1>
+        <section class="comment-section ">
+            <div class="comment-container center">
+                <div class="text">
+                    <h1 class="author">GET</h1>
+                    <span class="comment">{{ path('animeUploader') }} | {{ path('hentaiUploader') }} | {{ path('baguetteUploader') }} | {{ path('dvaUploader') }} | {{ path('hugUploader') }} | {{ path('nekoUploader') }} | {{ path('nsfwnekoUploader') }} |
+                        {{ path('trapUploader') }} | {{ path('yuriUploader') }}
+                    </span>
+                </div>
             </div>
-            <div class="buttons">
-                <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="_blank">Anime</a>
-                <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
-                <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="_blank">D.VA</a>
-                <a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="_blank">Trap</a>
-                <a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="_blank">Hug</a>
-                <a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="_blank">Baguette</a>
-                <a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="_blank">Yuri</a>
-                <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="_blank">Neko</a>
-                <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="_blank">NSFW Neko</a>
-            </div>
+        </section>
+        <div class="buttons">
+            <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="_blank">Anime Uploader</a>
+            <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
+            <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="_blank">D.VA Uploader</a>
+            <a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="_blank">Trap Uploader</a>
+            <a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="_blank">Hug Uploader</a>
+            <a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="_blank">Baguette Uploader</a>
+            <a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="_blank">Yuri Uploader</a>
+            <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="_blank">Neko Uploader</a>
+            <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="_blank">NSFW Neko Uploader</a>
+        </div>
+        <span class="center-text">
+                <p>if you have wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="_blank">logout</a></p>
+            </span>
         </div>
     </section>
+
 
 {% endblock %}
 

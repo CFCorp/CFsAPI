@@ -102,8 +102,6 @@ class DefaultController extends Controller
 
         return $nsfwnekoCount[0]['cnt'];
     }
-
-
     /**
      * @Route("/", name="homepage")
      */
