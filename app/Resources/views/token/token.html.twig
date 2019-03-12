@@ -8,6 +8,9 @@
                 </div>
             </div>
         </section>
+        <form method="post">
+            <input type="submit" value="Generate">
+        </form>
         <span class="center-text">
             <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
         </span>
@@ -35,6 +38,29 @@
         p { font-size: 20px;}
         a { color: #0000F0; }
         a:hover { text-decoration: none; }
+
+        input[type="submit"] {
+            background: orange;
+            color: white;
+            -webkit-appearance: none;
+            border: none;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0px 0px;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+        }
+
+        input:hover {
+             background:blue;
+             color:orange;
+         }
+
+        input:focus {
+             outline:none;
+             background:#6600CC;
+         }
+
     </style>
 {% endblock %}
 

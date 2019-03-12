@@ -2,7 +2,10 @@
 
 namespace AppBundle\Controller\Api\v1;
 
+use AppBundle\Entity\User;
+use AppBundle\Form\UserTokenType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TokenController extends Controller
@@ -23,11 +26,35 @@ class TokenController extends Controller
 
         return $userToken[0]['tkn'];
     }
+
+    public function generateNewUserToken(){
+        $user = $this->getUser();
+
+
+        $password = $user->getPassword();
+
+        $time = getdate();
+        $hashed = $user->getUsername() . $password . $time[0] . $time['weekday'];
+
+        $token = md5($hashed . microtime(false));
+
+        $user->setUserToken($token);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirect('token');
+    }
     /**
      * @Route("/token", name="token")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        // why this not work reeeee
+        if($request->getMethod() == 'POST'){
+            $this->generateNewUserToken();
+        }
         $userToken = $this->getUserToken();
         return $this->render('token/token.html.twig', array('userToken' => $userToken));
     }
