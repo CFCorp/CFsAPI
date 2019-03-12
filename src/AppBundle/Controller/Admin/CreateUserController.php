@@ -31,6 +31,12 @@ class CreateUserController extends Controller
 
             $user->setRoles([UserType::user]);
 
+            $time = getdate();
+            $hashed = $user->getUsername() . $password . $time[0] . $time['weekday'];
+
+            $token = md5($hashed . microtime(false));
+
+            $user->setUserToken($token);
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -39,7 +45,7 @@ class CreateUserController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirect('default/index.html.twig');
+            return $this->redirect('admin/admin.html.twig');
         }
 
         return $this->render(

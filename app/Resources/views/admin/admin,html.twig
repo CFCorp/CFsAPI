@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="me">
+        <h1 class="title">Admin Page</h1>
+        <div class="buttons"> uploaders:
+            <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="_blank">Anime Uploader</a>
+            <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
+            <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="_blank">D.VA Uploader</a>
+            <a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="_blank">Trap Uploader</a>
+            <a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="_blank">Hug Uploader</a>
+            <a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="_blank">Baguette Uploader</a>
+            <a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="_blank">Yuri Uploader</a>
+            <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="_blank">Neko Uploader</a>
+            <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="_blank">NSFW Neko Uploader</a>
+        </div>
+        <span class="center-text">
+            <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="_blank">logout</a></p>
+        </span>
+    </section>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <meta name="og:title" content="CFs API">
+    <meta name="og:description" content="a small API that sends anime/hentai images in JSON">
+    <meta name="og:image" content="{{ asset('Image/profile.png') }}">
+    <meta name="og:url" content="https://api.computerfreaker.cf">
+    <link href="https://modesta.alexflipnote.xyz/css/modesta.min.css" type="text/css" rel="stylesheet">
+    <style>
+
+        body { font: 18px/1.5 sans-serif;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
+        .center-object h1 { font-size: 20px; }
+        h2 { font-size: 21px; margin-bottom: 1em; }
+        p { font-size: 20px;}
+        a { color: #0000F0; }
+        a:hover { text-decoration: none; }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

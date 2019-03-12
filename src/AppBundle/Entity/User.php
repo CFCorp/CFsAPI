@@ -26,16 +26,22 @@ class User implements UserInterface,\Serializable
      */
     private $password;
     /**
+     * @ORM\Column(type="string", length=120)
+     */
+    private $userToken;
+    /**
      * @ORM\Column(type="json_array")
      */
     private $roles = array();
+
 
     public function serialize()
     {
         return serialize(array(
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->userToken
         ));
     }
     public function unserialize($serialized)
@@ -43,7 +49,8 @@ class User implements UserInterface,\Serializable
         list(
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->userToken
             ) = unserialize($serialized);
     }
     public function getRoles()
@@ -67,6 +74,12 @@ class User implements UserInterface,\Serializable
     public function getUsername()
     {
         return $this->username;
+    }
+    public function setUserToken($userToken){
+        $this->userToken = $userToken;
+    }
+    public function getUserToken(){
+        return $this->userToken;
     }
     public function eraseCredentials()
     {
