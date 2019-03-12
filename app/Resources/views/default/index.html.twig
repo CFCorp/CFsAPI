@@ -25,41 +25,41 @@
             </div>
         </section>
         <div class="buttons">
-            <a href="{{ path("categories") }}" class="btn animation pomegranate" target="_blank">Categories</a>
-            <a href="{{ path("anime") }}" class="btn animation pomegranate" target="_blank">Anime</a>
-            <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="_blank">Hentai</a>
-            <a href="{{ path("yuri") }}" class="btn animation pomegranate" target="_blank">Yuri</a>
-            <a href="{{ path("dva") }}" class="btn animation pomegranate" target="_blank">D.VA</a>
-            <a href="{{ path("trap") }}" class="btn animation pomegranate" target="_blank">Trap</a>
-            <a href="{{ path("hug") }}" class="btn animation pomegranate" target="_blank">Hug</a>
-            <a href="{{ path("neko") }}" class="btn animation pomegranate" target="_blank">neko</a>
-            <a href="{{ path("nsfwneko") }}" class="btn animation pomegranate" target="_blank">nsfwneko</a>
-            <a href="{{ path("baguette") }}" class="btn animation pomegranate" target="_blank">Baguette</a>
+            <a href="{{ path("categories") }}" class="btn animation pomegranate" target="">Categories</a>
+            <a href="{{ path("anime") }}" class="btn animation pomegranate" target="">Anime</a>
+            <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="">Hentai</a>
+            <a href="{{ path("yuri") }}" class="btn animation pomegranate" target="">Yuri</a>
+            <a href="{{ path("dva") }}" class="btn animation pomegranate" target="">D.VA</a>
+            <a href="{{ path("trap") }}" class="btn animation pomegranate" target="">Trap</a>
+            <a href="{{ path("hug") }}" class="btn animation pomegranate" target="">Hug</a>
+            <a href="{{ path("neko") }}" class="btn animation pomegranate" target="">neko</a>
+            <a href="{{ path("nsfwneko") }}" class="btn animation pomegranate" target="">nsfwneko</a>
+            <a href="{{ path("baguette") }}" class="btn animation pomegranate" target="">Baguette</a>
             <a href="https://discord.gg/rMVju6a" class="btn animation pomegranate" target="_blank">Main Server</a>
             <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
         </div>
         {% if is_granted('ROLE_ADMIN') %}
             <span class="center-text">
-                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="_blank">logout</a></p>
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
             </span>
             <div class="buttons"> uploaders:
-                <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="_blank">Anime Uploader</a>
+                <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="">Anime Uploader</a>
                 <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
-                <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="_blank">D.VA Uploader</a>
-                <a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="_blank">Trap Uploader</a>
-                <a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="_blank">Hug Uploader</a>
-                <a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="_blank">Baguette Uploader</a>
-                <a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="_blank">Yuri Uploader</a>
-                <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="_blank">Neko Uploader</a>
-                <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="_blank">NSFW Neko Uploader</a>
+                <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="">D.VA </a>
+                <a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="">Trap Uploader</a>
+                <a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="">Hug Uploader</a>
+                <a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="">Baguette Uploader</a>
+                <a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="">Yuri Uploader</a>
+                <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="">Neko Uploader</a>
+                <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="">NSFW Neko Uploader</a>
             </div>
         {% elseif is_granted('ROLE_USER') %}
             <span class="center-text">
-                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="_blank">logout</a></p>
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
             </span>
         {% else %}
             <span class="center-text">
-                <p>if you have an account click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="_blank">login</a></p>
+                <p>if you have an account click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="">login</a></p>
             </span>
         {% endif %}
         </div>
