@@ -13,109 +13,30 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function getHentaiCount(){
+
+    public function getCount($name){
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `hentai`");
+        $statement = $connection->prepare("SELECT count(*) as cnt FROM `$name`");
         $statement->execute();
-        $hentaiCount = $statement->fetchAll();
+        $getCount = $statement->fetchAll();
 
-        return $hentaiCount[0]['cnt'];
-    }
-
-    public function getAnimeCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `anime`");
-        $statement->execute();
-        $animeCount = $statement->fetchAll();
-
-        return $animeCount[0]['cnt'];
-    }
-
-    public function getDVACount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `dva`");
-        $statement->execute();
-        $dvaCount = $statement->fetchAll();
-
-        return $dvaCount[0]['cnt'];
-    }
-
-    public function getTrapCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `trap`");
-        $statement->execute();
-        $trapCount = $statement->fetchAll();
-
-        return $trapCount[0]['cnt'];
-    }
-
-    public function getHugCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `hug`");
-        $statement->execute();
-        $hugCount = $statement->fetchAll();
-
-        return $hugCount[0]['cnt'];
-    }
-
-    public function getBaguetteCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `baguette`");
-        $statement->execute();
-        $baguetteCount = $statement->fetchAll();
-
-        return $baguetteCount[0]['cnt'];
-    }
-
-    public function getYuriCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `yuri`");
-        $statement->execute();
-        $yuriCount = $statement->fetchAll();
-
-        return $yuriCount[0]['cnt'];
-    }
-
-    public function getNekoCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `neko`");
-        $statement->execute();
-        $nekoCount = $statement->fetchAll();
-
-        return $nekoCount[0]['cnt'];
-    }
-
-    public function getNSFWNekoCount(){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT count(*) as cnt FROM `nsfwneko`");
-        $statement->execute();
-        $nsfwnekoCount = $statement->fetchAll();
-
-        return $nsfwnekoCount[0]['cnt'];
+        return $getCount[0]['cnt'];
     }
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        $hentaiCount = $this->getHentaiCount();
-        $animeCount = $this->getAnimeCount();
-        $dvaCount = $this->getDVACount();
-        $trapCount = $this->getTrapCount();
-        $hugCount = $this->getHugCount();
-        $baguetteCount = $this->getBaguetteCount();
-        $yuriCount = $this->getYuriCount();
-        $nekoCount = $this->getNekoCount();
-        $nsfwnekoCount = $this->getNSFWNekoCount();
+        $hentaiCount = $this->getCount("hentai");
+        $animeCount = $this->getCount("anime");
+        $dvaCount = $this->getCount("dva");
+        $trapCount = $this->getCount("trap");
+        $hugCount = $this->getCount("hug");
+        $baguetteCount = $this->getCount("baguette");
+        $yuriCount = $this->getCount("yuri");
+        $nekoCount = $this->getCount("neko");
+        $nsfwnekoCount = $this->getCount("nsfwneko");
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'hentai' => $hentaiCount,
