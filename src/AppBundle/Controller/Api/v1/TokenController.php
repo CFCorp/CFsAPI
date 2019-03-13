@@ -36,7 +36,7 @@ class TokenController extends Controller
         $time = getdate();
         $hashed = $user->getUsername() . $password . $time[0] . $time['weekday'];
 
-        $token = md5($hashed . microtime(false));
+        $token = sha1($hashed . microtime(false));
 
         $user->setUserToken($token);
 
@@ -46,12 +46,12 @@ class TokenController extends Controller
 
         return $this->redirect('token');
     }
+
     /**
      * @Route("/token", name="token")
      */
     public function indexAction(Request $request)
     {
-        // why this not work reeeee
         if($request->getMethod() == 'POST'){
             $this->generateNewUserToken();
         }
