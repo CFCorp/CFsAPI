@@ -6,45 +6,14 @@
         {% block stylesheets %}
             <meta name="og:title" content="CFs API">
             <meta name="og:description" content="a small API that sends anime/hentai images in JSON">
-            <meta name="og:image" content="{{ asset('https://computerfreaker.cf/profile/profile.png') }}">
+            <meta name="og:image" content="{{ asset('Image/profile.png') }}">
             <meta name="og:url" content="https://api.computerfreaker.cf">
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('https://computerfreaker.cf/profile/profile.png') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('Image/profile.png') }}" />
     </head>
     <body>
     <div class="nav-container" style="background: linear-gradient(120deg,#6600CC,#000000,#000000) !important;">`
         <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }}</h1>
-        <div id="navside" class="sidenav">
-            <span class="closebtn">&times;</span>
-            <a href="{{ path('homepage') }}">Home</a>
-            {% if not is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('login') }}">Login</a>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
-                <a href="{{ path('logout') }}">Logout</a>
-            {% endif %}
-            <a href="{{ path('categories') }}">Categories</a>
-            <a href="{{ path('anime') }}">Anime</a>
-            <a href="{{ path('hentai') }}">Hentai</a>
-            <a href="{{ path('dva') }}">D.VA</a>
-            <a href="{{ path('trap') }}">Trap</a>
-            <a href="{{ path('hug') }}">Hug</a>
-            <a href="{{ path('baguette') }}">Baguette</a>
-            {% if is_granted('ROLE_ADMIN')%}
-                <a href="{{ path('Uploader') }}">Uploader</a>
-                <a href="{{ path('animeUploader') }}">Anime Uploader</a>
-                <a href="{{ path('hentaiUploader') }}">Hentai Uploader</a>
-                <a href="{{ path('dvaUploader') }}">D.VA Uploader</a>
-                <a href="{{ path('trapUploader') }}">Trap Uploader</a>
-                <a href="{{ path('hugUploader') }}">Hug Uploader</a>
-                <a href="{{ path('baguetteUploader') }}">Baguette Uploader</a><br><br>
-            {% endif %}
-        </div>
-        <script>
-            let navside = document.getElementById('navside');
-            document.getElementById("menu-icon").onclick = function() { navside.style.width = "250px"; }
-            document.getElementsByClassName("closebtn")[0].onclick = function() { navside.style.width = "0"; }
-        </script>
     </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
