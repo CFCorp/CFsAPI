@@ -22,6 +22,6 @@ class DVAController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
-        return new JsonResponse($this->getData("dva", "dva"));
+        return new JsonResponse(array("url" => $this->getData("dva", "dva")));
     }
 }

@@ -23,6 +23,6 @@ class NekoController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
-        return new JsonResponse($this->getData("neko", "neko"));
+        return new JsonResponse(array("url" => $this->getData("neko", "neko")));
     }
 }

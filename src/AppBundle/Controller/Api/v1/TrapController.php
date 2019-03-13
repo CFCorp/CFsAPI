@@ -22,6 +22,6 @@ class TrapController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
-        return new JsonResponse($this->getData("trap", "trap"));
+        return new JsonResponse(array("url" => $this->getData("trap", "trap")));
     }
 }

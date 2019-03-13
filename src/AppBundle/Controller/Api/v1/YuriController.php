@@ -22,6 +22,6 @@ class YuriController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
-        return new JsonResponse($this->getData("yuri", "yuri"));
+        return new JsonResponse(array("url" => $this->getData("yuri", "yuri")));
     }
 }
