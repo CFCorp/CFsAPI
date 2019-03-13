@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class NekoController extends Controller
+class NekoController extends BaseAPIController
 {
     /**
      * @Route("/v1/neko",name="neko")
@@ -23,20 +23,6 @@ class NekoController extends Controller
      * @param $id
      */
     public function getAction() {
-        $response = new Response();
-        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-        $response->headers->set('Access-Control-Allow-Origin','*');
-        $response->headers->set('Cache-Control','no-cache');
-        $response->send();
-
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM neko ORDER BY RAND() LIMIT 1");
-        $statement->execute();
-        $neko = $statement->fetch();
-
-        $full_link = "https://neko." . $_SERVER["HTTP_HOST"]. "/" . $neko['url'];
-
-        return new JsonResponse($full_link);
+        return new JsonResponse($this->getData("neko", "neko"));
     }
 }

@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class HugController extends Controller
+class HugController extends BaseAPIController
 {
     /**
      * @Route("/v1/hug",name="hug")
@@ -23,20 +23,6 @@ class HugController extends Controller
      * @param $id
      */
     public function getAction() {
-        $response = new Response();
-        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-        $response->headers->set('Access-Control-Allow-Origin','*');
-        $response->headers->set('Cache-Control','no-cache');
-        $response->send();
-
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM hug ORDER BY RAND() LIMIT 1");
-        $statement->execute();
-        $hug = $statement->fetch();
-
-        $full_link = "https://hug." . $_SERVER["HTTP_HOST"]. "/" . $hug['url'];
-
-        return new JsonResponse($full_link);
+        return new JsonResponse($this->getData("hug", "hug"));
     }
 }

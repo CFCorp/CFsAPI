@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class BaguetteController extends Controller
+class BaguetteController extends BaseAPIController
 {
     /**
      * @Route("/v1/baguette",name="baguette")
@@ -23,20 +23,6 @@ class BaguetteController extends Controller
      * @param $id
      */
     public function getAction() {
-        $response = new Response();
-        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-        $response->headers->set('Access-Control-Allow-Origin','*');
-        $response->headers->set('Cache-Control','no-cache');
-        $response->send();
-
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM baguette ORDER BY RAND() LIMIT 1");
-        $statement->execute();
-        $baguette = $statement->fetch();
-
-        $full_link = "https://baguette." . $_SERVER["HTTP_HOST"]. "/" . $baguette['url'];
-
-        return new JsonResponse($full_link);
+        return new JsonResponse($this->getData("baguette", "baguette"));
     }
 }

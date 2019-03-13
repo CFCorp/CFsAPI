@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class DVAController extends Controller
+class DVAController extends BaseAPIController
 {
     /**
      * @Route("/v1/dva", name="dva")
@@ -22,20 +22,6 @@ class DVAController extends Controller
      * @param $id
      */
     public function getAction() {
-        $response = new Response();
-        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-        $response->headers->set('Access-Control-Allow-Origin','*');
-        $response->headers->set('Cache-Control','no-cache');
-        $response->send();
-
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM dva ORDER BY RAND() LIMIT 1");
-        $statement->execute();
-        $dva = $statement->fetch();
-
-        $full_link = "https://dva." . $_SERVER["HTTP_HOST"]. "/" . $dva['url'];
-
-        return new JsonResponse($full_link);
+        return new JsonResponse($this->getData("dva", "dva"));
     }
 }

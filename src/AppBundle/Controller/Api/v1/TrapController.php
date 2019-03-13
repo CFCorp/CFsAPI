@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class TrapController extends Controller
+class TrapController extends BaseAPIController
 {
     /**
      * @Route("/v1/trap", name="trap")
@@ -22,20 +22,6 @@ class TrapController extends Controller
      * @param $id
      */
     public function getAction() {
-        $response = new Response();
-        $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
-        $response->headers->set('Access-Control-Allow-Origin','*');
-        $response->headers->set('Cache-Control','no-cache');
-        $response->send();
-
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM trap ORDER BY RAND() LIMIT 1");
-        $statement->execute();
-        $trap = $statement->fetch();
-
-        $full_link = "https://trap." . $_SERVER["HTTP_HOST"]. "/" . $trap['url'];
-
-        return new JsonResponse($full_link);
+        return new JsonResponse($this->getData("trap", "trap"));
     }
 }
