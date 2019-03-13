@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller\Api\v1;
 
-use AppBundle\Entity\User;
-use AppBundle\Form\UserTokenType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

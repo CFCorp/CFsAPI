@@ -34,7 +34,7 @@ class CreateUserController extends Controller
             $time = getdate();
             $hashed = $user->getUsername() . $password . $time[0] . $time['weekday'];
 
-            $token = md5($hashed . microtime(false));
+            $token = sha1($hashed . microtime(false));
 
             $user->setUserToken($token);
             // 4) save the User!
