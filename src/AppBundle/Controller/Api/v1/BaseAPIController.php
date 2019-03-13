@@ -21,7 +21,7 @@ class BaseAPIController extends Controller
         $statement->execute();
         $name = $statement->fetch();
 
-        $full_link = "https://" . $url . "/". $_SERVER["HTTP_HOST"]. "/" . $name['url'];
+        $full_link = "https://" . $url . ".". $_SERVER["HTTP_HOST"]. "/" . $name['url'];
 
         return $full_link;
     }
