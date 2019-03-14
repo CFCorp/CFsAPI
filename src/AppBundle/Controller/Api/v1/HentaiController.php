@@ -8,12 +8,9 @@
 
 namespace AppBundle\Controller\Api\v1;
 
-use AppBundle\Entity\Hentai;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class HentaiController extends BaseAPIController
 {
