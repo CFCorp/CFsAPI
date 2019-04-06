@@ -22,7 +22,7 @@ class BaseAPIController extends Controller
 
         $updatedAddress = str_replace('api', '', $_SERVER["HTTP_HOST"]);
 
-        $full_link = "https://" . $url . ".". $updatedAddress. "/" . $name['url'];
+        $full_link = "https://" . $url . $updatedAddress. "/" . $name['url'];
 
         return $full_link;
     }
