@@ -20,7 +20,9 @@ class BaseAPIController extends Controller
         $statement->execute();
         $name = $statement->fetch();
 
-        $full_link = "https://" . $url . ".". $this->getContainer()->get('router')->getContext()->getHost(). "/" . $name['url'];
+        $updatedAddress = str_replace('api', '', $_SERVER["HTTP_HOST"]);
+
+        $full_link = "https://" . $url . ".". $updatedAddress. "/" . $name['url'];
 
         return $full_link;
     }
