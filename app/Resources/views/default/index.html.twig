@@ -2,11 +2,11 @@
 {% block body %}
     <section class="me">
         <h1 class="title">CFs API</h1>
-        <h1>Here you can find all the current endpoints</h1>
+        <h1>Here you can find all the current endpoints <br>
+        all endpoints are GET only</h1>
         <section class="comment-section ">
             <div class="comment-container center">
                 <div class="text">
-                    <h1 class="author">GET</h1>
                     <span class="comment">{{ path('categories') }} | {{ path('anime') }} | {{ path('hentai') }} | {{ path('dva') }} | {{ path('trap') }} | {{ path('hug') }} | {{ path('baguette') }} |
                         {{ path('neko') }} | {{ path('nsfwneko') }}
                         <p>There are at the moment: <br>
@@ -41,7 +41,9 @@
             <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
         </div>
         {% if is_granted('ROLE_ADMIN') %}
-            <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p><p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
+            <span class="center-text">
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
+            </span>
             <div class="buttons"> uploaders:
                 <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="">Anime Uploader</a>
                 <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
@@ -55,9 +57,11 @@
                 <a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="">Neko Uploader</a>
                 <a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="">NSFW Neko Uploader</a>
             </div>
+            <p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
         {% elseif is_granted('ROLE_USER') %}
             <span class="center-text">
-                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p><p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
+                <p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
             </span>
         {% else %}
             <span class="center-text">
