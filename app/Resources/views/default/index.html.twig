@@ -41,9 +41,7 @@
             <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
         </div>
         {% if is_granted('ROLE_ADMIN') %}
-            <span class="center-text">
-                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p><p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
-            </span>
+            <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p><p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
             <div class="buttons"> uploaders:
                 <a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="">Anime Uploader</a>
                 <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
