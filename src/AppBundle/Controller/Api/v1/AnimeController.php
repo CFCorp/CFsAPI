@@ -22,6 +22,7 @@ class AnimeController extends BaseAPIController
      * @param $id
      */
     public function getAction(Request $request) {
+        $this->updateImageList("anime");
         return new JsonResponse(array("url" => $this->getData("anime", "anime")));
     }
 

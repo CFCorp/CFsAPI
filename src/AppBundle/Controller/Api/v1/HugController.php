@@ -20,6 +20,7 @@ class HugController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
+        $this->updateImageList("hug");
         return new JsonResponse(array("url" => $this->getData("hug", "hug")));
     }
 }

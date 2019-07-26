@@ -26,4 +26,19 @@ class BaseAPIController extends Controller
 
         return $full_link;
     }
+
+    public function updateImageList($subDomain){
+        $curDir = "/var/www/" . $subDomain . "/";
+        $allFiles = scandir($curDir);
+        $ignore = Array(".", "..");
+
+        foreach ($allFiles as $filename) {
+            if(!in_array($filename, $ignore)){
+                $em = $this->getDoctrine()->getManager();
+                $connection = $em->getConnection();
+                $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$filename')");
+                $statement->execute();
+            }
+        }
+    }
 }

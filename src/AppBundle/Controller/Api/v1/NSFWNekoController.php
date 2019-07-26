@@ -20,6 +20,7 @@ class NSFWNekoController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
+        $this->updateImageList("nsfwneko");
         return new JsonResponse(array("url" => $this->getData("nsfwneko", "nsfwneko")));
     }
 }
