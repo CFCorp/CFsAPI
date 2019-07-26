@@ -34,7 +34,7 @@ class BaseAPIController extends Controller
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
                 while (($file = readdir($dh)) !== false){
-                    if(!in_array($ignoreList)) {
+                    if(!in_array($file, $ignoreList)) {
                         $em = $this->getDoctrine()->getManager();
                         $connection = $em->getConnection();
                         $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
