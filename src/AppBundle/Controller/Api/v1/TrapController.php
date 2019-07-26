@@ -19,7 +19,8 @@ class TrapController extends BaseAPIController
      * @param $id
      */
     public function getAction() {
-        $this->updateImageList("trap");
-        return new JsonResponse(array("url" => $this->getData("trap", "trap")));
+        $name = "trap";
+        $this->updateImageList($name);
+        return new JsonResponse(array("url" => $this->getData($name, $name)));
     }
 }
