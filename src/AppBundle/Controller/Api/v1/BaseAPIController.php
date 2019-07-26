@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Api\v1;
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -35,10 +36,16 @@ class BaseAPIController extends Controller
             if($dh = opendir($curDir)){
                 while (($file = readdir($dh)) !== false){
                     if(!in_array($file, $ignoreList)) {
-                        $em = $this->getDoctrine()->getManager();
-                        $connection = $em->getConnection();
-                        $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
-                        $statement->execute();
+                        try {
+                            $em = $this->getDoctrine()->getManager();
+                            $connection = $em->getConnection();
+                            $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
+                            $statement->execute();
+                            $statement->flush();
+                        } catch (UniqueConstraintViolationException $e){
+                            $this->getDoctrine()->resetManager();
+                        }
+
                     }
                 }
                 closedir($dh);
