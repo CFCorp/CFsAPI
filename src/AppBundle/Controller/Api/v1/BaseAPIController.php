@@ -37,7 +37,7 @@ class BaseAPIController extends Controller
                     if(!in_array($file, $ignore)) {
                         $em = $this->getDoctrine()->getManager();
                         $connection = $em->getConnection();
-                        $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$filename')");
+                        $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
                         $statement->execute();
                     }
                 }
