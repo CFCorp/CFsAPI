@@ -29,20 +29,16 @@ class BaseAPIController extends Controller
 
     public function updateImageList($subDomain){
         $curDir = "/var/www/" . $subDomain . "/";
-        $ignore = Array(".", "..");
 
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
                 while (($file = readdir($dh)) !== false){
-                    if(!$ignore) {
-                        $em = $this->getDoctrine()->getManager();
-                        $connection = $em->getConnection();
-                        $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
-                        $statement->execute();
+                    $em = $this->getDoctrine()->getManager();
+                    $connection = $em->getConnection();
+                    $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
+                    $statement->execute();
 
-                        echo "filename:" . $file. "<br>";
-
-                    }
+                    echo "filename:" . $file. "<br>";
                 }
                 closedir($dh);
             }
