@@ -29,7 +29,6 @@ class BaseAPIController extends Controller
 
     public function updateImageList($subDomain){
         $curDir = "/var/www/" . $subDomain . "/";
-        $allFiles = scandir($curDir);
         $ignore = Array(".", "..");
 
         if (is_dir($curDir)){
