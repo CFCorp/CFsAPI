@@ -39,7 +39,8 @@ class BaseAPIController extends Controller
                         $connection = $em->getConnection();
                         $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
                         $statement->execute();
-                        print $statement->fetchAll();
+
+                        echo "filename:" . $file. "<br>";
 
                     }
                 }
