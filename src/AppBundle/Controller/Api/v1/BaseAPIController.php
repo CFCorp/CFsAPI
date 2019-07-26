@@ -44,7 +44,6 @@ class BaseAPIController extends Controller
                         } catch (UniqueConstraintViolationException $e){
                             $this->getDoctrine()->resetManager();
                         }
-
                     }
                 }
                 closedir($dh);
