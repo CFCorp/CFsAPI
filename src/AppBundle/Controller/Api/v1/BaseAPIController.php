@@ -32,13 +32,19 @@ class BaseAPIController extends Controller
         $allFiles = scandir($curDir);
         $ignore = Array(".", "..");
 
-        foreach ($allFiles as $filename) {
-            if(!in_array($filename, $ignore)){
-                $em = $this->getDoctrine()->getManager();
-                $connection = $em->getConnection();
-                $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$filename')");
-                $statement->execute();
+        if (is_dir($curDir)){
+            if($dh = opendir($curDir)){
+                while (($file = readdir($dh)) !== false){
+                    if(!in_array($file, $ignore)) {
+                        $em = $this->getDoctrine()->getManager();
+                        $connection = $em->getConnection();
+                        $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$filename')");
+                        $statement->execute();
+                    }
+                }
+                closedir($dh);
             }
         }
+
     }
 }
