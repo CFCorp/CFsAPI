@@ -23,7 +23,7 @@ class BaseAPIController extends Controller
 
         $updatedAddress = str_replace('api', '', $_SERVER["HTTP_HOST"]);
 
-        $full_link = "https://" . $url . $updatedAddress. "/" . $name['url'];
+        $full_link = "https://" . $url . $updatedAddress. "/" . rawurlencode($name['url']);
 
         return $full_link;
     }
@@ -44,7 +44,7 @@ class BaseAPIController extends Controller
                         try {
                             $em = $this->getDoctrine()->getManager();
                             $connection = $em->getConnection();
-                            $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ( " . `rawurlencode($file)` . ")");
+                            $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ($file)");
                             $statement->execute();
                         } catch (UniqueConstraintViolationException $e){
                             $this->getDoctrine()->resetManager();
