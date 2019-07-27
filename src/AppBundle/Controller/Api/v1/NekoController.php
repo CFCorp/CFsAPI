@@ -21,7 +21,6 @@ class NekoController extends BaseAPIController
      */
     public function getAction() {
         $name = "neko";
-        $this->updateImageList($name);
         return new JsonResponse(array("url" => $this->getData($name, $name)));
     }
 }

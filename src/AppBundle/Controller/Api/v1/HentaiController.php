@@ -21,7 +21,6 @@ class HentaiController extends BaseAPIController
      */
     public function getAction() {
         $name = "hentai";
-        $this->updateImageList($name);
         return new JsonResponse(array("url" => $this->getData($name, $name)));
     }
 }

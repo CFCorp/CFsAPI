@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -12,7 +13,9 @@ class UploadController extends Controller
      */
     public function animeAction()
     {
-        self::SaveUploads("anime");
+        $name = "anime";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/anime.html.twig');
 
     }
@@ -22,7 +25,9 @@ class UploadController extends Controller
      */
     public function hentaiAction()
     {
-        self::SaveUploads("hentai");
+        $name = "hentai";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/hentai.html.twig');
     }
 
@@ -31,7 +36,9 @@ class UploadController extends Controller
      */
     public function dvaAction()
     {
-        self::SaveUploads("dva");
+        $name = "dva";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/dva.html.twig');
     }
 
@@ -40,7 +47,9 @@ class UploadController extends Controller
      */
     public function trapAction()
     {
-        self::SaveUploads("trap");
+        $name = "trap";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/trap.html.twig');
     }
 
@@ -49,7 +58,9 @@ class UploadController extends Controller
      */
     public function hugAction()
     {
-        self::SaveUploads("hug");
+        $name = "hug";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/hug.html.twig');
     }
 
@@ -59,7 +70,9 @@ class UploadController extends Controller
      */
     public function baguetteAction()
     {
-        self::SaveUploads("baguette");
+        $name = "baguette";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/baguette.html.twig');
     }
 
@@ -68,7 +81,9 @@ class UploadController extends Controller
      */
     public function nekoAction()
     {
-        self::SaveUploads("neko");
+        $name = "neko";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/neko.html.twig');
     }
 
@@ -77,7 +92,9 @@ class UploadController extends Controller
      */
     public function nsfwnekoAction()
     {
-        self::SaveUploads("nsfwneko");
+        $name = "nsfwneko";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/nsfwneko.html.twig');
     }
 
@@ -86,7 +103,9 @@ class UploadController extends Controller
      */
     public function yuriAction()
     {
-        self::SaveUploads("yuri");
+        $name = "yuri";
+        self::updateImageList($name);
+        self::SaveUploads($name);
         return $this->render('upload/yuri.html.twig');
     }
 
@@ -142,5 +161,34 @@ class UploadController extends Controller
             }
             return $success;
         }
+    }
+
+    public function updateImageList($subDomain){
+        $curDir = "/var/www/" . $subDomain . "/";
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM " . $subDomain);
+        $helpMeSuffer = array($statement->execute());
+
+        $ignoreList = array(".", "..", $helpMeSuffer);
+
+        if (is_dir($curDir)){
+            if($dh = opendir($curDir)){
+                while (($file = readdir($dh)) !== false){
+                    if(!in_array($file, $ignoreList)) {
+                        try {
+                            $em = $this->getDoctrine()->getManager();
+                            $connection = $em->getConnection();
+                            $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ('$file')");
+                            $statement->execute();
+                        } catch (UniqueConstraintViolationException $e){
+                            $this->getDoctrine()->resetManager();
+                        }
+                    }
+                }
+                closedir($dh);
+            }
+        }
+
     }
 }
