@@ -36,7 +36,7 @@ class BaseAPIController extends Controller
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT url FROM " . $subDomain);
         $helpMeSuffer = array_keys($statement->execute());
-
+        echo $helpMeSuffer;
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
                 while (($file = readdir($dh)) !== false){
