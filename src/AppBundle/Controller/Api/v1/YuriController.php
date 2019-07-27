@@ -20,7 +20,6 @@ class YuriController extends BaseAPIController
      */
     public function getAction() {
         $name = "yuri";
-        $this->updateImageList($name);
         return new JsonResponse(array("url" => $this->getData($name, $name)));
     }
 }

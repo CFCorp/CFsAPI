@@ -21,7 +21,6 @@ class BaguetteController extends BaseAPIController
      */
     public function getAction() {
         $name = "baguette";
-        $this->updateImageList($name);
         return new JsonResponse(array("url" => $this->getData($name, $name)));
     }
 }
