@@ -29,12 +29,8 @@ class BaseAPIController extends Controller
     }
 
     public function updateImageList($subDomain){
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT url FROM $subDomain");
-        $curFile = $statement->execute();
         $curDir = "/var/www/" . $subDomain . "/";
-        $ignoreList = array(".", "..", $curFile);
+        $ignoreList = array(".", "..");
 
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
@@ -43,7 +39,7 @@ class BaseAPIController extends Controller
                         try {
                             $em = $this->getDoctrine()->getManager();
                             $connection = $em->getConnection();
-                            $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$file')");
+                            $statement = $connection->prepare("INSERT IGNORE INTO " . $subDomain . " (url) VALUES ('$file')");
                             $statement->execute();
                         } catch (UniqueConstraintViolationException $e){
                             $this->getDoctrine()->resetManager();
