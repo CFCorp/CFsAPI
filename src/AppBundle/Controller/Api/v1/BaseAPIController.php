@@ -35,7 +35,7 @@ class BaseAPIController extends Controller
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT url FROM " . $subDomain);
-        $helpMeSuffer = array_keys($statement->execute());
+        $helpMeSuffer = array($statement->execute());
         echo $helpMeSuffer;
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
