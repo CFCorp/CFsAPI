@@ -35,7 +35,12 @@ class BaseAPIController extends Controller
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
                 while (($file = readdir($dh)) !== false){
-                    if(!in_array($file, $ignoreList)) {
+                    $em = $this->getDoctrine()->getManager();
+                    $connection = $em->getConnection();
+                    $statement = $connection->prepare("SELECT url FROM ". $subDomain . " WHERE url=" . $file);
+                    $helpMeSuffer = $statement->execute();
+                    if(!in_array($file, $ignoreList) && $helpMeSuffer !== 0) {
+                        echo $helpMeSuffer;
                         try {
                             $em = $this->getDoctrine()->getManager();
                             $connection = $em->getConnection();
