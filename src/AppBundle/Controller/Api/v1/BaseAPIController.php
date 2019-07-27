@@ -37,7 +37,7 @@ class BaseAPIController extends Controller
                 while (($file = readdir($dh)) !== false){
                     $em = $this->getDoctrine()->getManager();
                     $connection = $em->getConnection();
-                    $statement = $connection->prepare("SELECT url FROM " . $subDomain . " WHERE url =" . `$file`);
+                    $statement = $connection->prepare("SELECT url FROM " . $subDomain . " WHERE url =" . `$file ?: null`);
                     $helpMeSuffer = $statement->execute();
                     if(!in_array($file, $ignoreList) && $helpMeSuffer !== 0) {
                         echo $helpMeSuffer;
