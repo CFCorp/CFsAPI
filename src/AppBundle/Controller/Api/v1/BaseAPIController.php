@@ -29,8 +29,12 @@ class BaseAPIController extends Controller
     }
 
     public function updateImageList($subDomain){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT url FROM $subDomain");
+        $curFile = $statement->execute();
         $curDir = "/var/www/" . $subDomain . "/";
-        $ignoreList = array(".", "..");
+        $ignoreList = array(".", "..", $curFile);
 
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
