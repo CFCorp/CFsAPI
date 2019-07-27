@@ -44,7 +44,7 @@ class BaseAPIController extends Controller
                         try {
                             $em = $this->getDoctrine()->getManager();
                             $connection = $em->getConnection();
-                            $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ( " . rawurlencode($file) . ")");
+                            $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ( " . `rawurlencode($file)` . ")");
                             $statement->execute();
                         } catch (UniqueConstraintViolationException $e){
                             $this->getDoctrine()->resetManager();
