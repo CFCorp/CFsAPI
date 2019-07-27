@@ -34,7 +34,7 @@ class BaseAPIController extends Controller
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT url FROM " . $subDomain);
         $helpMeSuffer = array($statement->execute());
-        
+
         $ignoreList = array(".", "..", $helpMeSuffer);
 
         if (is_dir($curDir)){
@@ -44,7 +44,7 @@ class BaseAPIController extends Controller
                         try {
                             $em = $this->getDoctrine()->getManager();
                             $connection = $em->getConnection();
-                            $statement = $connection->prepare("INSERT IGNORE INTO " . $subDomain . " (url) VALUES ('$file')");
+                            $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ( " . urlencode($file) . ")");
                             $statement->execute();
                         } catch (UniqueConstraintViolationException $e){
                             $this->getDoctrine()->resetManager();
