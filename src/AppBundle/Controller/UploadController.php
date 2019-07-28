@@ -164,13 +164,16 @@ class UploadController extends Controller
     }
 
     public function updateImageList($subDomain){
-        $curDir = "/var/www/" . $subDomain . "/";
+        $curDir = "/var/www/" . $subDomain . "/tmp/";
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT url FROM " . $subDomain);
         $helpMeSuffer = array($statement->execute());
 
         $ignoreList = array(".", "..", $helpMeSuffer);
+
+        $endingDir =  "/var/www/" . $subDomain . "/";
+
 
         if (is_dir($curDir)){
             if($dh = opendir($curDir)){
@@ -181,6 +184,7 @@ class UploadController extends Controller
                             $connection = $em->getConnection();
                             $statement = $connection->prepare("INSERT IGNORE INTO $subDomain (url) VALUES ('$file')");
                             $statement->execute();
+                            rename($curDir . $file, $endingDir . $file);
                         } catch (UniqueConstraintViolationException $e){
                             $this->getDoctrine()->resetManager();
                         }
