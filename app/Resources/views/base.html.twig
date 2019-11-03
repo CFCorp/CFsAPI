@@ -12,7 +12,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('Image/profile.png') }}" />
     </head>
     <body>
-    <div class="nav-container" style="background: linear-gradient(120deg,#6600CC,#000000,#000000) !important;">`
+    <div class="nav-container" style="background: linear-gradient(120deg,#6600CC,#000000,#000000) !important;">
         <h1 class="nav-title">welcome {{ app.user.getUsername()|default('') }}</h1>
     </div>
         {% block body %}{% endblock %}
