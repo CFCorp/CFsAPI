@@ -13,7 +13,7 @@ class CategoriesController extends Controller
 {
 
     public function categoryNameUrl($name, Request $request){
-        $full_url = $request->getHost().$this->generateUrl("$name");
+        $full_url =  $request->getScheme() . '://' . $request->getHost().$this->generateUrl("$name");
         return $full_url;
     }
 
@@ -30,15 +30,14 @@ class CategoriesController extends Controller
         $response->headers->set('Cache-Control','no-cache');
         $response->send();
 
-        return new JsonResponse(array(
-            "anime" => $this->categoryNameUrl("anime", $request),
-            "baguette" => $this->categoryNameUrl("baguette", $request),
-            "dva" => $this->categoryNameUrl("dva", $request),
-            "hentai" => $this->categoryNameUrl("hentai", $request),
-            "hug" => $this->categoryNameUrl("hug", $request),
-            "trap" => $this->categoryNameUrl("trap", $request),
-            "nsfwneko" => $this->categoryNameUrl("nsfwneko", $request),
-            "neko" => $this->categoryNameUrl("neko", $request),
-            "yuri" => $this->categoryNameUrl("yuri", $request)));
+        $names = array("anime", "baguette", "dva", "hentai", "hug", "trap", "nsfwneko", "neko", "yuri");
+        foreach ($names as $key => $name){
+             $data[] = $this->categoryNameUrl($name, $request);
+
+        }
+        $combined_vals = array_combine($names, $data);
+
+        return new JsonResponse($combined_vals);
+
     }
 }
