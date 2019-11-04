@@ -54,7 +54,7 @@ class ExceptionListener
             return;
         }
 
-        $url = $this->url();
+        $url = $_SERVER['HTTP_HOST'];
 
         if($exception instanceof NotFoundHttpException){
             $response = new RedirectResponse(`$url/404.php`, 302);
@@ -65,7 +65,7 @@ class ExceptionListener
     }
 
     public function onNotFoundException(NotFoundHttpException $exception){
-        $url = $this->url();
+        $url = $_SERVER['HTTP_HOST'];
         $broken = $exception->getStatusCode();
 
         if($broken instanceof NotFoundHttpException){
