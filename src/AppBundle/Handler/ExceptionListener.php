@@ -42,7 +42,7 @@ class ExceptionListener
         }
 
         if($exception instanceof NotFoundHttpException){
-            $response = new RedirectResponse('https://www.computerfreaker.cf/404.html', 302);
+            $response = new RedirectResponse('/404.php', 302);
         }
 
         // Send the modified response object to the event
@@ -53,7 +53,7 @@ class ExceptionListener
         $broken = $exception->getStatusCode();
 
         if($broken instanceof NotFoundHttpException){
-            $response = new RedirectResponse('https://www.computerfreaker.cf/404.html', 302);
+            $response = new RedirectResponse(`/404.php`, 302);
             return $response;
         }
         return $broken;
