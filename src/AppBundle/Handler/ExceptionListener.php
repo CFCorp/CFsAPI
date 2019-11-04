@@ -17,21 +17,8 @@ use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 class ExceptionListener
 {
-    private function url(){
-        if(isset($_SERVER['HTTPS'])){
-            $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
-        }
-        else{
-            $protocol = 'http';
-        }
-        return $protocol . "://" . $_SERVER['HTTP_HOST'];
-    }
-
-
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-
-
         // You get the exception object from the received event
         $exception = $event->getException();
         $message = sprintf(
@@ -54,10 +41,8 @@ class ExceptionListener
             return;
         }
 
-        $url = $_SERVER['HTTP_HOST'];
-
         if($exception instanceof NotFoundHttpException){
-            $response = new RedirectResponse(`$url/404.php`, 302);
+            $response = new RedirectResponse('https://www.computerfreaker.cf/404.php', 302);
         }
 
         // Send the modified response object to the event
@@ -65,11 +50,10 @@ class ExceptionListener
     }
 
     public function onNotFoundException(NotFoundHttpException $exception){
-        $url = $_SERVER['HTTP_HOST'];
         $broken = $exception->getStatusCode();
 
         if($broken instanceof NotFoundHttpException){
-            $response = new RedirectResponse(`$url/404.php`, 302);
+            $response = new RedirectResponse('https://www.computerfreaker.cf/404.php', 302);
             return $response;
         }
         return $broken;
