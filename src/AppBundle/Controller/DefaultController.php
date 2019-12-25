@@ -7,6 +7,7 @@
  */
 namespace AppBundle\Controller;
 
+use AppBundle\Controller\Api\EndPointsEnums;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,26 +29,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $hentaiCount = $this->getCount("hentai");
-        $animeCount = $this->getCount("anime");
-        $dvaCount = $this->getCount("dva");
-        $trapCount = $this->getCount("trap");
-        $hugCount = $this->getCount("hug");
-        $baguetteCount = $this->getCount("baguette");
-        $yuriCount = $this->getCount("yuri");
-        $nekoCount = $this->getCount("neko");
-        $nsfwnekoCount = $this->getCount("nsfwneko");
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'hentai' => $hentaiCount,
-            'anime' => $animeCount,
-            'dva' => $dvaCount,
-            'trap' => $trapCount,
-            'hug' => $hugCount,
-            'baguette' => $baguetteCount,
-            'yuri' => $yuriCount,
-            'neko' => $nekoCount,
-            'nsfwneko' => $nsfwnekoCount
-        ));
+        $names = array("anime", "baguette", "dva", "hentai", "hug", "trap", "nsfwneko", "neko", "yuri");
+        foreach ($names as $key => $name){
+            $data[] = $this->getCount($name);
+
+        }
+        $combined_array = array_combine($names, $data);
+        
+        return $this->render('default/index.html.twig', $combined_array);
     }
 }
