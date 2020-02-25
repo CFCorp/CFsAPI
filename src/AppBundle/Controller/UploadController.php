@@ -6,7 +6,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class UploadController extends Controller
+class srvUploadController extends Controller
 {
     /**
      * @Route("/uploader/anime", name="animeUploader")
@@ -141,13 +141,13 @@ class UploadController extends Controller
                 $tehashenNaam = $image . $image_tmp_name . $tijd[0] . $tijd['weekday'] . ".$ext";
                 $teller = 0;
                 $nieuweFotoNaam = md5($tehashenNaam) . ".$ext";
-                while (file_exists("/var/www/" . $subDomain . "/" . $nieuweFotoNaam)) {
+                while (file_exists("/srv/http/" . $subDomain . "/" . $nieuweFotoNaam)) {
                     $tehashenNaam = $teller . $tehashenNaam;
                     $nieuweFotoNaam = md5($tehashenNaam) . ".$ext";
                     $teller++;
                 }
                 // image file directory
-                $target = "/var/www/" . $subDomain . "/" . basename($nieuweFotoNaam);
+                $target = "/srv/http/" . $subDomain . "/" . basename($nieuweFotoNaam);
                 $em = $this->getDoctrine()->getManager();
                 $connection = $em->getConnection();
                 $statement = $connection->prepare("INSERT INTO " . $subDomain . " (url) VALUES ('$nieuweFotoNaam')");
@@ -164,7 +164,7 @@ class UploadController extends Controller
     }
 
     public function updateImageList($subDomain){
-        $curDir = "/var/www/" . $subDomain . "/tmp/";
+        $curDir = "/srv/http/" . $subDomain . "/tmp/";
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT url FROM " . $subDomain);
@@ -172,7 +172,7 @@ class UploadController extends Controller
 
         $ignoreList = array(".", "..", $helpMeSuffer);
 
-        $endingDir =  "/var/www/" . $subDomain . "/";
+        $endingDir =  "/srv/http/" . $subDomain . "/";
 
 
         if (is_dir($curDir)){
