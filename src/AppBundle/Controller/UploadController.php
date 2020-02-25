@@ -171,7 +171,7 @@ class UploadController extends Controller{
 
         $ignoreList = array(".", "..", $helpMeSuffer);
 
-        $endingDir =  "/srv/p/" . $subDomain . "/";
+        $endingDir =  "/srv/http/" . $subDomain . "/";
 
 
         if (is_dir($curDir)){
