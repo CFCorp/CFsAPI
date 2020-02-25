@@ -6,8 +6,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class srvUploadController extends Controller
-{
+class UploadController extends Controller{
     /**
      * @Route("/uploader/anime", name="animeUploader")
      */
@@ -172,7 +171,7 @@ class srvUploadController extends Controller
 
         $ignoreList = array(".", "..", $helpMeSuffer);
 
-        $endingDir =  "/srv/http/" . $subDomain . "/";
+        $endingDir =  "/srv/p/" . $subDomain . "/";
 
 
         if (is_dir($curDir)){
