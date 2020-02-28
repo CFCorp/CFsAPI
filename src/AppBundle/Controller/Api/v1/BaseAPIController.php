@@ -21,9 +21,7 @@ class BaseAPIController extends Controller
         $statement->execute();
         $name = $statement->fetch();
 
-        $updatedAddress = str_replace('api', '', $_SERVER["HTTP_HOST"]);
-
-        $full_link = "https://" . $url . $updatedAddress. "/" . rawurlencode($name['url']);
+        $full_link = "https://" . $url . ".computerfreaker.cf". "/" . rawurlencode($name['url']);
 
         return $full_link;
     }
