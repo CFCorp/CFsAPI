@@ -13,7 +13,7 @@ class CategoriesController extends Controller
 {
 
     public function categoryNameUrl($name, Request $request){
-        $full_url =  $request->getScheme() . '://' . $request->getHost().$this->generateUrl("$name");
+        $full_url =  $request->getScheme() . '://' . "api.computerfreaker.cf".$this->generateUrl("$name");
         return $full_url;
     }
 
