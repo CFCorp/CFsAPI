@@ -71,8 +71,8 @@ maba_gentle_force:
         host: 127.0.0.1
     limits:
         api_request:
-                # Allow 120 requests each minute.
-            - max_usages: 120
+                # Allow 9000 requests each minute.
+            - max_usages: 9000
               period: 1m
               bucketed_period: 1h
     listeners:
