@@ -58,11 +58,13 @@
                 <a href="https://discord.gg/DDRbw7W" class="btn animation pomegranate" target="_blank">Main Server</a>
                 <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
             </div>
-            {% if not is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')%}
             <div class="buttons">
+                {% if not is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')%}
                 <p>if you wanna logout click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="">login</a></p>
+                {% else %}
+                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </div>
     <a href="#information"><div class="arrow bounce">
@@ -129,7 +131,6 @@
         <div class="box-container">
             <h3 class="title emerald-text"><i class="emoji ablobcatangel"></i> Endpoint Uploaders:</h3>
             <div class="info-container">
-                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
                 <p><a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="">Anime Uploader</a>
                     <a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a>
                     <a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="">D.VA </a>
@@ -147,7 +148,6 @@
         <div class="box-container">
             <h3 class="title emerald-text"><i class="emoji ablobcatangel"></i> Endpoint Uploaders:</h3>
             <div class="info-container">
-                <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
                 <p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
             </div>
         </div>
