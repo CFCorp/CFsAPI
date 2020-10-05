@@ -1,5 +1,35 @@
-{% extends 'base.html.twig' %}
-{% block body %}
+<html>
+<head>
+    <title>CFs API</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Meta Data -->
+    <meta name="theme-color" content="#6600cc">
+    <meta content="https://computerfreaker.cf/profile/profile.png" property="og:image" />
+    <link rel="icon" type="image/x-icon" href="http://computerfreaker.cf/profile/profile.png">
+    <meta content="CFs API" property="og:title" />
+
+    <meta content="CFs API" property="og:description" />
+    <meta content="CFs API" name="description" />
+
+    <meta name="revisit-after" content="2 days">
+    <meta name="keywords" content="computerfreaker, API, CFsAPI, Discord">
+
+    <meta property="og:locale" content="en_US" />
+    <link rel="canonical" href="https://computerfreaker.cf/" />
+    <meta property="og:url" content="https://api.computerfreaker.cf/" />
+    <meta property="og:site_name" content="api.computerfreaker.cf" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@computerfreaker" />
+
+    <!-- CSS -->
+    <link href="https://modesta.alexflipnote.dev/css/modesta.css" type="text/css" rel="stylesheet">
+    <link href="https://modesta.alexflipnote.dev/css/blobcat.css" type="text/css" rel="stylesheet">
+
+</head>
+<body class="github-font-standard">
 <div class="fullscreen">
     <div class="center-object">
         <div class="container">
@@ -9,7 +39,8 @@
                 </div>
                 <div class="unset">
                     <h1 class="title monospace">CFs API</h1>
-                    <p class="undertitle monospace">Here you can find all the current endpoints, all endpoints are GET only</p>
+                    <p class="undertitle monospace">{{ path('categories') }} | {{ path('anime') }} | {{ path('hentai') }} | {{ path('dva') }} | {{ path('trap') }} | {{ path('hug') }} | {{ path('baguette') }} |
+                        {{ path('neko') }} | {{ path('nsfwneko') }}</p>
                 </div>
             </section>
             <div class="buttons">
@@ -28,6 +59,7 @@
             </div>
         </div>
     </div>
+
     <a href="#information"><div class="arrow bounce">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 481.32 291.98" class="wisteria-fill">
                 <path d="M466.5,15.5L466,15c-19.8-19.8-52-19.8-71.9,0L240.8,168.3L87.2,14.8C67.4-5,35.2-5,15.4,14.8l-0.5,0.5 C-5,35.2-5,67.4,14.8,87.2l186.6,186.6c0.9,1,1.8,2,2.7,3v0c3.8,3.8,8.1,6.9,12.7,9.3c17,9,38.1,7.7,53.9-3.9 c2.2-1.6,4.4-3.4,6.4-5.4L466.5,87.4C486.4,67.6,486.4,35.4,466.5,15.5z"/>
@@ -35,33 +67,96 @@
         </div></a>
 </div>
 
+<section class="container" id="information">
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="box-container">
+        <h3 class="title emerald-text"><i class="emoji ablobcatangel"></i> Endpoint Uploaders:</h3>
+        <div class="info-container">
+            <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
+            <p><a href="{{ path("animeUploader") }}" class="btn animation pomegranate" target="">Anime Uploader</a></p>
+            <p><a href="{{ path("hentaiUploader") }}" class="btn animation pomegranate" target="_blank">Hentai Uploader</a></p>
+            <p><a href="{{ path("dvaUploader") }}" class="btn animation pomegranate" target="">D.VA </a></p>
+            <p><a href="{{ path("trapUploader") }}" class="btn animation pomegranate" target="">Trap Uploader</a></p>
+            <p><a href="{{ path("hugUploader") }}" class="btn animation pomegranate" target="">Hug Uploader</a></p>
+            <p><a href="{{ path("baguetteUploader") }}" class="btn animation pomegranate" target="">Baguette Uploader</a></p>
+            <p><a href="{{ path("yuriUploader") }}" class="btn animation pomegranate" target="">Yuri Uploader</a></p>
+            <p><a href="{{ path('nekoUploader') }}" class="btn animation pomegranate" target="">Neko Uploader</a></p>
+            <p><a href="{{ path('nsfwnekoUploader') }}" class="btn animation pomegranate" target="">NSFW Neko Uploader</a></p>
+            <p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
+        </div>
+    </div>
+    {% elseif is_granted('ROLE_USER') %}
+    <div class="box-container">
+        <h3 class="title emerald-text"><i class="emoji ablobcatangel"></i> Endpoint Uploaders:</h3>
+        <div class="info-container">
+            <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
+            <p>you can find your token here: <a href="{{ path("token") }}" class="btn animation pomegranate" target="">token</a></p>
+        </div>
+    </div>
+    {% else %}
+    <div class="box-container">
+        <h3 class="title emerald-text"><i class="emoji ablobcatangel"></i> Login:</h3>
+        <div class="info-container">
+            <p>if you wanna logout click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="">login</a></p>
+        </div>
+    </div>
+    {% endif %}
 
-
-
-
-{% endblock %}
-
-{% block stylesheets %}
-    <meta name="og:title" content="CFs API">
-    <meta name="og:description" content="a small API that sends anime/hentai images in JSON">
-    <meta name="og:image" content="{{ asset('Image/profile.png') }}">
-    <meta name="og:url" content="https://api.computerfreaker.cf">
-    <link href="https://modesta.alexflipnote.dev/css/modesta.css" type="text/css" rel="stylesheet">
-    <style>
-
-        body { font: 18px/1.5 sans-serif;
-            overflow-y: hidden;
-            overflow-x: hidden;
-        }
-        h1, h2 { line-height: 1.2; margin: 0 0 .5em;}
-        .center-object h1 { font-size: 20px; }
-        h2 { font-size: 21px; margin-bottom: 1em; }
-        p { font-size: 20px;}
-        a { color: #0000F0; }
-        a:hover { text-decoration: none; }
-    </style>
-{% endblock %}
-
-{% block javascripts %}
-
-{% endblock %}
+    <div class="box-container">
+        <h3 class="title emerald-text"><i class="emoji blobcatbusiness"></i> Projects:</h3>
+        <div class="info-container">
+            <p>
+                <div class="table-container table-center">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Endpoint Name</th>
+                            <th>Amount of Images</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><span class="raw-purple-text">Anime</span></td>
+                            <td class="numeric soft-purple-text">{{ anime }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">Hentai</span></td>
+                            <td class="numeric soft-purple-text">{{ hentai }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">D.VA</span></td>
+                            <td class="numeric soft-purple-text">{{ dva }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">Trap</span></td>
+                            <td class="numeric soft-purple-text">{{ trap }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">Hug</span></td>
+                            <td class="numeric soft-purple-text">{{ hug }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">baguette</span></td>
+                            <td class="numeric soft-purple-text">{{ baguette }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">Yuri</span></td>
+                            <td class="numeric soft-purple-text">{{ yuri }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">Neko</span></td>
+                            <td class="numeric soft-purple-text">{{ neko }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="raw-purple-text">NSFW Neko</span></td>
+                            <td class="numeric soft-purple-text">{{ nsfwneko }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p>
+        </div>
+    </div>
+</section>
+</body>
+</html>
