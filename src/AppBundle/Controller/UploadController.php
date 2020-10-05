@@ -108,14 +108,6 @@ class UploadController extends Controller{
         return $this->render('upload/yuri.html.twig');
     }
 
-    /**
-     * @Route("/uploader", name="Uploader")
-     */
-    public function uploaderAction()
-    {
-        return $this->render('upload/uploader.html.twig');
-    }
-
     public function SaveUploads($subDomain)
     {
         if (isset($_POST['upload'])) {
