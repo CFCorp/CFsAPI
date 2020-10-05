@@ -58,6 +58,57 @@
                 <a href="https://discord.gg/DDRbw7W" class="btn animation pomegranate" target="_blank">Main Server</a>
                 <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server</a>
             </div>
+            <div class="box-container">
+                <div class="table-container">
+                    <h3 class="title emerald-text"><i class="emoji blobcatbusiness"></i> Stats: </h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Endpoint Name</th>
+                            <th>Amount of Images</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><span class="emerald-text">Anime</span></td>
+                            <td class="numeric soft-purple-text">{{ anime }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Hentai</span></td>
+                            <td class="numeric soft-purple-text">{{ hentai }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">D.VA</span></td>
+                            <td class="numeric soft-purple-text">{{ dva }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Trap</span></td>
+                            <td class="numeric soft-purple-text">{{ trap }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Hug</span></td>
+                            <td class="numeric soft-purple-text">{{ hug }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">baguette</span></td>
+                            <td class="numeric soft-purple-text">{{ baguette }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Yuri</span></td>
+                            <td class="numeric soft-purple-text">{{ yuri }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Neko</span></td>
+                            <td class="numeric soft-purple-text">{{ neko }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">NSFW Neko</span></td>
+                            <td class="numeric soft-purple-text">{{ nsfwneko }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="box-container">
                     <h3 class="title emerald-text"><i class="emoji ablobcatangel"></i> Endpoint Uploaders:</h3>
@@ -91,56 +142,6 @@
                     </div>
                 </div>
             {% endif %}
-        </div>
-        <div class="box-container">
-            <div class="table-container">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Endpoint Name</th>
-                        <th>Amount of Images</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><span class="emerald-text">Anime</span></td>
-                        <td class="numeric soft-purple-text">{{ anime }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">Hentai</span></td>
-                        <td class="numeric soft-purple-text">{{ hentai }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">D.VA</span></td>
-                        <td class="numeric soft-purple-text">{{ dva }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">Trap</span></td>
-                        <td class="numeric soft-purple-text">{{ trap }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">Hug</span></td>
-                        <td class="numeric soft-purple-text">{{ hug }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">baguette</span></td>
-                        <td class="numeric soft-purple-text">{{ baguette }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">Yuri</span></td>
-                        <td class="numeric soft-purple-text">{{ yuri }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">Neko</span></td>
-                        <td class="numeric soft-purple-text">{{ neko }}</td>
-                    </tr>
-                    <tr>
-                        <td><span class="emerald-text">NSFW Neko</span></td>
-                        <td class="numeric soft-purple-text">{{ nsfwneko }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
 </div>
