@@ -36,12 +36,13 @@
         <div class="container">
             <section class="me unset">
                 <div class="avatar-container">
-                    <img draggable="false" src="/Image/profile.png" class="image-title">
+                    <img draggable="false" src="{{ asset('Image/profile.png') }}" class="image-title">
                 </div>
                 <div class="unset">
                     <h1 class="title monospace">CFs API</h1>
                     <p class="undertitle monospace">{{ path('categories') }} | {{ path('anime') }} | {{ path('hentai') }} | {{ path('dva') }} | {{ path('trap') }} | {{ path('hug') }} | {{ path('baguette') }} |
                         {{ path('neko') }} | {{ path('nsfwneko') }}</p>
+                    <h3 class="cubered-text">click one of the buttons to go to the corresponding API endpoint.</h3>
                 </div>
             </section>
             <div class="buttons">
@@ -49,10 +50,14 @@
                 <a href="{{ path("anime") }}" class="btn animation pomegranate" target="">Anime</a>
                 <a href="{{ path("hentai") }}" class="btn animation pomegranate" target="">Hentai</a>
                 <a href="{{ path("yuri") }}" class="btn animation pomegranate" target="">Yuri</a>
+            </div>
+            <div class="buttons">
                 <a href="{{ path("dva") }}" class="btn animation pomegranate" target="">D.VA</a>
                 <a href="{{ path("trap") }}" class="btn animation pomegranate" target="">Trap</a>
                 <a href="{{ path("hug") }}" class="btn animation pomegranate" target="">Hug</a>
                 <a href="{{ path("neko") }}" class="btn animation pomegranate" target="">Neko</a>
+            </div>
+            <div class="buttons">
                 <a href="{{ path("nsfwneko") }}" class="btn animation pomegranate" target="">NSFW Neko</a>
                 <a href="{{ path("baguette") }}" class="btn animation pomegranate" target="">Baguette</a>
                 <a href="https://discord.gg/DDRbw7W" class="btn animation pomegranate" target="_blank">Main Server</a>
