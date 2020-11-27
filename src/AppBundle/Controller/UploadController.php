@@ -121,13 +121,7 @@ class UploadController extends Controller{
                 $image_tmp_name = $_FILES['image']['tmp_name'][$i];
                 $finfo = new \finfo(FILEINFO_MIME_TYPE);
                 $mime = $finfo->file($_FILES['image']['tmp_name'][$i]);
-                $allowed = array(
-                    'jpeg' => 'image/jpeg',
-                    'jpg' => 'image/jpg',
-                    'png' => 'image/png',
-                    'gif' => 'image/gif',
-                );
-                $ext = array_search($mime, $allowed, true);
+                $ext = $mime;
                 $tijd = getdate();
                 $tehashenNaam = $image . $image_tmp_name . $tijd[0] . $tijd['weekday'] . ".$ext";
                 $teller = 0;
