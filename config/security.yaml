@@ -1,0 +1,37 @@
+security:
+  encoders:
+    App\Entity\User:
+      algorithm: bcrypt
+      cost:      15
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  providers:
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
+    oauth_hwi:
+      id: hwi_oauth.user.provider
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      anonymous: ~
+      provider: oauth_hwi
+      oauth:
+        resource_owners:
+          auth0: "/auth0/callback"
+        login_path: /
+        failure_path: /
+        default_target_path: /list
+        oauth_user_provider:
+          service: hwi_oauth.user.provider
+      guard:
+        authenticators:
+          - App\Security\LoginFormAuthenticator
+      logout:
+        path: logout
+        target: /
+  access_control:
+    - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
