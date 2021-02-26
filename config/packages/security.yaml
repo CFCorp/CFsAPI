@@ -6,10 +6,6 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
-        our_db_provider:
-            entity:
-            class: App:User
-            property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,12 +13,9 @@ security:
         main:
             anonymous: ~
 
-            provider: our_db_provider
-
             form_login:
               login_path: login
               check_path: login
-              success_handler: app.login_handler
             logout:
               path: /logout
               target: /

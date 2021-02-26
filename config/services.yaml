@@ -4,11 +4,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    database_host: 127.0.0.1
-    database_port: 3306
-    database_name: API
-    database_user: root
-    database_password: ~
+    app.database_host: 127.0.0.1
+    app.database_port: 3306
+    app.database_name: API
+    app.database_user: root
+    app.database_password: ~
     secret: ThisTokenIsNotSoSecretChangeIt
 
 services:
