@@ -19,6 +19,9 @@ security:
             logout:
               path: /logout
               target: /
+            guard:
+                authenticators:
+                    - App\Security\LoginAuthAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
