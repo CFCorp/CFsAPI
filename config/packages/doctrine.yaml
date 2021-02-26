@@ -6,6 +6,7 @@ doctrine:
         dbname: API
         user: root
         password: ~
+        url: mysql://db_user:db_password@127.0.0.1:3306/db_name
         charset: UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
