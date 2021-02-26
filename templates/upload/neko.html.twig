@@ -1,0 +1,14 @@
+{% extends 'baseUpload.html.twig'%}
+{% block body %}
+    <div id="content">
+        <form method="POST" action="{{ path('nekoUploader') }}" enctype="multipart/form-data">
+            <input type="hidden" name="size" value="1000000">
+            <div id="img_div">
+                <label> enter your files here
+                    <input type="file" id="file" name="image[]" multiple="multiple" data-multiple-caption="{count} files selected">
+                </label>
+            </div>
+            <button type="submit" name="upload">POST</button>
+        </form>
+    </div>
+{% endblock %}
