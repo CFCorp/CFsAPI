@@ -1,70 +1,67 @@
-{% extends 'baseLogin.html.twig' %} 
-{% block title %}Log in!{% endblock %} {% block body %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 ml-md-auto">
-      <div class="">
-        <div class="card bg-light mb-3 mt-5" style="width: 800px;">
-          <div class="card-body">
-            <form class="form-horizontal" role="form" method="post">
-              {% if error %}
-              <div class="alert alert-danger">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
-              </div>
-              {% endif %} {% if app.user %}
-              <div class="mb-3">
-                You are logged in as {{ app.user.username }},
-                <a href="{{ path('app_logout') }}">Logout</a>
-              </div>
-              {% endif %}
-              <div class="card-header mb-3">Please sign in</div>
-              <div class="form-group">
-                <label for="username" class="col-md-4 control-label"
-                  >Username</label
-                >
-                <div class="col-md-12">
-                  <input
-                    id="inputUsername"
-                    type="username"
-                    class="form-control"
-                    name="username"
-                    value="{{ last_username }}"
-                    required
-                    autofocus
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="password" class="col-md-4 control-label"
-                  >Password</label
-                >
-                <div class="col-md-12">
-                  <input
-                    id="inputPassword"
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    required
-                  />
-                </div>
-              </div>
-              <input
-                type="hidden"
-                name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"
-              />
-              <div class="form-group">
-                <div class="col-md-12">
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-btn fa-sign-in"></i> Login
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, "login") }}</div>
+    {% endif %}
+<form action="{{ path('login') }}" method="post">
+    <div class="login-page_container">
+      {% if error %}
+        <div class="alert alert-danger">
+      {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
-      </div>
+      {% endif %} {% if app.user %}
+        <div class="mb-3">
+          You are logged in as {{ app.user.username }},
+          <a href="{{ path('logout') }}">Logout</a>
+        </div>
+       {% endif %}
+
+        <div class="login-section page-side section-ope">
+            <div class="section-page_intro">
+                <img src="{{ asset('Image/signin-icon-black.png') }}" alt="signin-icon">
+                <p class="section-page-intro_title">Sign In</p>
+            </div>
+
+            <div class="login-form-area">
+                <p class="form-title">Sign In</p>
+                <div class="section-form">
+                    <form class="login-form">
+                        <label class="login-page_label">
+                            <input class="login-page_input" type="text" autocomplete="off" name="username">
+                            <span class="login-page_placeholder">Username</span>
+                        </label>
+                        <label class="login-page_label">
+                            <input class="login-page_input" type="password" autocomplete="off" name="password">
+                            <span class="login-page_placeholder">Password</span>
+                        </label>
+                        <label class="login-page_label">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        </label>
+                        <div class="login-section_submit">
+                            <div class="login-page-submit-btn">
+                                <input type="submit" name="submit-login" value="login">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+</form>
+    <script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
+    <script src="{{ asset('js/login-page_script.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login page</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login-page_demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login-page_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login-page_responsive.css') }}">
+    <title>Anime Upload</title>
+    <link href="https://modesta.alexflipnote.dev/css/modesta.css" type="text/css" rel="stylesheet">
 {% endblock %}
