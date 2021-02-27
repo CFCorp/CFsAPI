@@ -16,6 +16,8 @@ A small API that sends anime/hentai images in JSON.
 - Better response times
 
 #### FAQ
+ Why do I get an error
+ - the most likely issue is that you are using the default user-agent
 
  Can i help
 - Yes of course just make a PR.
