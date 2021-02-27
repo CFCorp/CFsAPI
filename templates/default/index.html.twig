@@ -64,10 +64,10 @@
                 <a href="https://discord.gg/gzWwtWG " class="btn animation pomegranate" target="_blank">API Server (Discord)</a>
             </div>
             <div class="buttons">
-                {% if not is_granted('ROLE_ADMIN') or not is_granted('ROLE_USER')%}
-                <p>if you wanna logout click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="">login</a></p>
-                {% else %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')%}
                 <p>if you wanna logout click this button: <a href="{{ path("logout") }}" class="btn animation pomegranate" target="">logout</a></p>
+                {% else %}
+                <p>if you wanna login click this button: <a href="{{ path("login") }}" class="btn animation pomegranate" target="">login</a></p>
                 {% endif %}
             </div>
         </div>
