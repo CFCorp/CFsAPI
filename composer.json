@@ -1,8 +1,8 @@
 {
-    "name": "symfony/website-skeleton",
+    "name": "CFs API",
     "type": "project",
-    "license": "MIT",
-    "description": "A skeleton to start a new Symfony website",
+    "license": "Apache",
+    "description": "An API that can send images in JSON format",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
