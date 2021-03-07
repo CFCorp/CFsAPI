@@ -1,5 +1,5 @@
 {
-    "name": "CFs API",
+    "name": "computerfreaker/cfsapi",
     "type": "project",
     "license": "Apache",
     "description": "An API that can send images in JSON format",
