@@ -36,7 +36,7 @@ class CategoriesController extends AbstractController
 
         }
         $combined_vals = array_combine($names, $data);
-
+        
         return new JsonResponse($combined_vals);
 
     }
